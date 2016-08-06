@@ -1,7 +1,6 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-VAGRANT_CWD = '../../../../../centos7vm/.vagrant'
 Vagrant.configure(2) do |config|
   config.vm.box = "centos/7"
   config.ssh.insert_key = false
