@@ -1,0 +1,1 @@
+{"rsync":{"/home/vagrant/sync":{"type":"rsync","guestpath":"/home/vagrant/sync","hostpath":"/Users/hmohan/Library/Application Support/Go Agent/pipelines/boot_centos7vm1","disabled":false,"__vagrantfile":true,"owner":"vagrant","group":"vagrant"}}}
