@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cruise xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cruise-config.xsd" schemaVersion="84">
+  <server artifactsdir="artifacts" commandRepositoryLocation="default" serverId="31296be0-ac11-48e4-b5e5-0d594ccf4b41" />
+  <pipelines group="centos7OsOnly">
+    <pipeline name="cycle-centos7" isLocked="false">
+      <environmentvariables>
+        <variable name="VAGRANT_DOTFILE_PATH">
+          <value>/Users/hmohan/centos7vm/.vagrant</value>
+        </variable>
+      </environmentvariables>
+      <materials>
+        <git url="/Users/hmohan/centos7vm" />
+      </materials>
+      <stage name="defaultStage">
+        <approval type="manual" />
+        <jobs>
+          <job name="defaultJob">
+            <tasks>
+              <exec command="bash">
+                <arg>-cl</arg>
+                <arg>vagrant halt</arg>
+                <runif status="passed" />
+              </exec>
+              <exec command="bash">
+                <arg>-cl</arg>
+                <arg>vagrant up</arg>
+                <runif status="passed" />
+              </exec>
+              <exec command="bash">
+                <arg>-cl</arg>
+                <arg>vagrant halt</arg>
+                <runif status="passed" />
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+    </pipeline>
+    <pipeline name="halt_centos7vm1" isLocked="false">
+      <environmentvariables>
+        <variable name="VAGRANT_DOTFILE_PATH">
+          <value>/Users/hmohan/centos7vm/.vagrant</value>
+        </variable>
+      </environmentvariables>
+      <materials>
+        <git url="/Users/hmohan/centos7vm" />
+      </materials>
+      <stage name="defaultStage">
+        <approval type="manual" />
+        <jobs>
+          <job name="defaultJob">
+            <tasks>
+              <exec command="bash">
+                <arg>-cl</arg>
+                <arg>vagrant halt</arg>
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+    </pipeline>
+    <pipeline name="boot_centos7vm1" isLocked="false">
+      <environmentvariables>
+        <variable name="VAGRANT_DOTFILE_PATH">
+          <value>/Users/hmohan/centos7vm/.vagrant</value>
+        </variable>
+      </environmentvariables>
+      <materials>
+        <git url="/Users/hmohan/centos7vm" />
+      </materials>
+      <stage name="defaultStage">
+        <approval type="manual" />
+        <jobs>
+          <job name="defaultJob">
+            <tasks>
+              <exec command="bash">
+                <arg>-cl</arg>
+                <arg>vagrant up</arg>
+                <runif status="passed" />
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+    </pipeline>
+    <pipeline name="destroy_centos7vm1" isLocked="false">
+      <environmentvariables>
+        <variable name="VAGRANT_DOTFILE_PATH">
+          <value>/Users/hmohan/centos7vm/.vagrant</value>
+        </variable>
+      </environmentvariables>
+      <materials>
+        <git url="/Users/hmohan/centos7vm" />
+      </materials>
+      <stage name="defaultStage">
+        <approval type="manual" />
+        <jobs>
+          <job name="defaultJob">
+            <tasks>
+              <exec command="bash">
+                <arg>-cl</arg>
+                <arg>vagrant destroy "centos7Vm1"</arg>
+                <runif status="passed" />
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+    </pipeline>
+  </pipelines>
+  <agents>
+    <agent hostname="SRIs-MacBook-Pro.local" ipaddress="127.0.0.1" uuid="9cb9748d-038f-4e20-8cd2-43818bc5c914" />
+  </agents>
+</cruise>
+
