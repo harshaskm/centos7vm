@@ -4,42 +4,77 @@
   with_items:
     - bash
     - openssl
-    - libssl-dev
-    - libssl-doc
+#    - libssl-dev
+#    - libssl-doc
   tags: packages
 
-- name: Install PostgreSQL
-  yum: name={{ item }} update_cache=true state=installed
-  with_items:
-    - postgresql
-    - postgresql-contrib
-    - libpq-dev
-    - python-psycopg1
-  tags: packages
+#- name: Install PostgreSQL
+#  yum: name={{ item }} update_cache=true state=installed
+#  with_items:
+#    - postgresql
+#    - postgresql-contrib
+#    - libpq-dev
+#    - python-psycopg1
+#  tags: packages
+#
+#- name: Ensure the PostgreSQL service is running
+#  service: name=postgresql state=started enabled=yes
+#
+#- name: Ensure database is created
+#  sudo_user: postgres
+#  postgresql_db: name={{ db_name }}
+#                 encoding='UTF-8'
+#                 lc_collate='en_US.UTF-8'
+#                 lc_ctype='en_US.UTF-8'
+#                 template='template-0'
+#                 state=present
+#
+#- name: Ensure user has access to the database
+#  sudo_user: postgres
+#  postgresql_user: db={{ db_name }}
+#                   name={{ db_user }}
+#                   password={{ db_password }}
+#                   priv=ALL
+#                   state=present
+#
+#- name: Ensure user does not have unnecessary privileges
+#  sudo_user: postgres
+#  postgresql_user: name{{ db_user }}
+#                   role_attr_flags=NOSUPER,NOCREATEDB
+#                   state=pr
 
-- name: Ensure the PostgreSQL service is running
-  service: name=postgresql state=started enabled=yes
+- name: For Base "Add a line with the text to the yum repo file if it does not exist"
+  lineinfile: >
+    dest=/etc/yum.repos.d/CentOS-Base.repo
+    insertafter="Base"
+    line="exclude=postgresql*"
+  tags: modifyYumFile
 
-- name: Ensure database is created
-  sudo_user: postgres
-  postgresql_db: name={{ db_name }}
-                 encoding='UTF-8'
-                 lc_collate='en_US.UTF-8'
-                 lc_ctype='en_US.UTF-8'
-                 template='template-0'
-                 state=present
+- name: For Updates "Add a line with the text to the yum repo file if it does not exist"
+  lineinfile: >
+    dest=/etc/yum.repos.d/CentOS-Base.repo
+    insertafter="Updates"
+    line=" exclude=postgresql*"
+  tags: modifyYumFile
 
-- name: Ensure user has access to the database
-  sudo_user: postgres
-  postgresql_user: db={{ db_name }}
-                   name={{ db_user }}
-                   password={{ db_password }}
-                   priv=ALL
-                   state=present
+- name: install postgres yum repo from http://yum.postgresql.org/repopackages.php#pg95 (for version 9.5)
+  yum: name=https://download.postgresql.org/pub/repos/yum/9.5/redhat/rhel-7-x86_64/pgdg-centos95-9.5-2.noarch.rpm state=present
+  tags: installYumRepoForPostgres
 
-- name: Ensure user does not have unnecessary privileges
-  sudo_user: postgres
-  postgresql_user: name{{ db_user }}
-                   role_attr_flags=NOSUPER,NOCREATEDB
-                   state=pr
+- name: install Postgres9.5 server
+  yum: name=postgresql95-server state=present
+  tags: installPostgresServer95
+
+- name: Initiate Postgres database
+  command: service postgresql-9.5 initdb
+  tags: initdb
+
+
+
+
+
+
+
+
+
 
