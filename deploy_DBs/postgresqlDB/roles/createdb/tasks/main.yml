@@ -65,11 +65,22 @@
   yum: name=postgresql95-server state=present
   tags: installPostgresServer95
 
-- name: Initiate Postgres database
-  command: service postgresql-9.5 initdb
+- name: Enable the postgres db service (this is equivalent to chkconfig on)
+  command: systemctl enable postgresql-9.5
+  tags: enablePosgresService
+
+- stat: path=/path/to/something
+  register: p
+  when: p.stat.isdir is defined and p.stat.isdir
+- debug: msg="Path exists and is a directory"
+
+- name: This is to initialize the settings that are required for the db to started and function.
+  command: /usr/pgsql-9.5/bin/postgresql95-setup initdb
+  when: p.stat.isdir is not defined and not p.stat.isdir
   tags: initdb
 
-
+- name: Start the database service
+  command: sudo systemctl start postgresql-9.5.service
 
 
 
