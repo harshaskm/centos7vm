@@ -34,19 +34,20 @@
   command: systemctl enable postgresql-9.5
   tags: enablePosgresService
 
-- stat: path=/var/lib/pgsql/9.5/data
+- command: ls -l /var/lib/pgsql/9.5/data
   register: p
-- debug: msg="Path exists and is a directory"
-  tags: checkdatadir
+
+#Commented lines here help to visualize the contents of the registered variable
+#- name: check p.exists value
+#  debug: msg="{{ p.stdout }}"
 
 - name: This is to initialize the settings that are required for the db to be started and function.
   command: /usr/pgsql-9.5/bin/postgresql95-setup initdb
-  when: not p.stat.isdir
+  when: p.stdout == "total 0"
   tags: initdb
 
 - name: Start the database service
   command: sudo systemctl start postgresql-9.5.service
-
 
 
 
