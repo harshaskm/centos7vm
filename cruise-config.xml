@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <cruise xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cruise-config.xsd" schemaVersion="84">
   <server artifactsdir="artifacts" commandRepositoryLocation="default" serverId="31296be0-ac11-48e4-b5e5-0d594ccf4b41" />
-  <pipelines group="centos7OsOnly">
-    <pipeline name="cycle-centos7" isLocked="false">
+  <pipelines group="postgresqlOnCentos7">
+    <pipeline name="cycle_postgresqlOnCentos7_p" isLocked="false">
       <environmentvariables>
         <variable name="VAGRANT_DOTFILE_PATH">
           <value>/Users/hmohan/centos7vm/.vagrant</value>
@@ -11,24 +11,95 @@
       <materials>
         <git url="/Users/hmohan/centos7vm" />
       </materials>
-      <stage name="defaultStage">
+      <stage name="halt_postgresqlOnCentos7_stg1">
         <approval type="manual" />
         <jobs>
-          <job name="defaultJob">
+          <job name="halt_postgresqlOnCentos7_job1">
             <tasks>
               <exec command="bash">
                 <arg>-cl</arg>
-                <arg>vagrant halt</arg>
+                <arg>vagrant postgresqlOnCentos7 halt</arg>
                 <runif status="passed" />
               </exec>
+              <exec command="bash">
+                <arg>-cl</arg>
+                <arg>vagrant postgresqlOnCentos7 up</arg>
+                <runif status="passed" />
+              </exec>
+              <exec command="bash">
+                <arg>-cl</arg>
+                <arg>vagrant postgresqlOnCentos7 halt</arg>
+                <runif status="passed" />
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+    </pipeline>
+    <pipeline name="halt_postgresqlOnCentos7_p" isLocked="false">
+      <environmentvariables>
+        <variable name="VAGRANT_DOTFILE_PATH">
+          <value>/Users/hmohan/centos7vm/.vagrant</value>
+        </variable>
+      </environmentvariables>
+      <materials>
+        <git url="/Users/hmohan/centos7vm" />
+      </materials>
+      <stage name="halt_postgresqlOnCentos7_stg1">
+        <approval type="manual" />
+        <jobs>
+          <job name="halt_postgresqlOnCentos7_job1">
+            <tasks>
+              <exec command="bash">
+                <arg>-cl</arg>
+                <arg>vagrant postgresqlOnCentos7 halt</arg>
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+    </pipeline>
+    <pipeline name="boot_postgresqlOnCentos7_p" isLocked="false">
+      <environmentvariables>
+        <variable name="VAGRANT_DOTFILE_PATH">
+          <value>/Users/hmohan/centos7vm/.vagrant</value>
+        </variable>
+      </environmentvariables>
+      <materials>
+        <git url="/Users/hmohan/centos7vm" />
+      </materials>
+      <stage name="up_postgresqlOnCentos7_stg1">
+        <approval type="manual" />
+        <jobs>
+          <job name="up_postgresqlOnCentos7_job1">
+            <tasks>
               <exec command="bash">
                 <arg>-cl</arg>
                 <arg>vagrant up</arg>
                 <runif status="passed" />
               </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+    </pipeline>
+    <pipeline name="destroy_postgresqlOnCentos7_p" isLocked="false">
+      <environmentvariables>
+        <variable name="VAGRANT_DOTFILE_PATH">
+          <value>/Users/hmohan/centos7vm/.vagrant</value>
+        </variable>
+      </environmentvariables>
+      <materials>
+        <git url="/Users/hmohan/centos7vm" />
+      </materials>
+      <stage name="destory_postgresqlOnCentos7_stg1">
+        <approval type="manual" />
+        <jobs>
+          <job name="destroy_postgresqlOnCentos7_job1">
+            <tasks>
               <exec command="bash">
                 <arg>-cl</arg>
-                <arg>vagrant halt</arg>
+                <arg>deploy_DBs/postgresqlDB/scripts/destroy_postgresqlOnCentos7.sh</arg>
                 <runif status="passed" />
               </exec>
             </tasks>
@@ -36,42 +107,35 @@
         </jobs>
       </stage>
     </pipeline>
-    <pipeline name="halt_centos7vm1" isLocked="false">
+    <pipeline name="reIncarnate_postgresqlOnCentos7_p" isLocked="false">
       <environmentvariables>
         <variable name="VAGRANT_DOTFILE_PATH">
           <value>/Users/hmohan/centos7vm/.vagrant</value>
+        </variable>
+        <variable name="ANSIBLE_HOST_KEY_CHECKING">
+          <value>False</value>
         </variable>
       </environmentvariables>
       <materials>
         <git url="/Users/hmohan/centos7vm" />
       </materials>
-      <stage name="defaultStage">
+      <stage name="destroy_postgresqlOnCentos7_stg1">
         <approval type="manual" />
         <jobs>
-          <job name="defaultJob">
+          <job name="destroy_postgresqlOnCentos7_job1">
             <tasks>
               <exec command="bash">
                 <arg>-cl</arg>
-                <arg>vagrant halt</arg>
+                <arg>deploy_DBs/postgresqlDB/scripts/destroy_postgresqlOnCentos7.sh</arg>
+                <runif status="passed" />
               </exec>
             </tasks>
           </job>
         </jobs>
       </stage>
-    </pipeline>
-    <pipeline name="boot_centos7vm1" isLocked="false">
-      <environmentvariables>
-        <variable name="VAGRANT_DOTFILE_PATH">
-          <value>/Users/hmohan/centos7vm/.vagrant</value>
-        </variable>
-      </environmentvariables>
-      <materials>
-        <git url="/Users/hmohan/centos7vm" />
-      </materials>
-      <stage name="defaultStage">
-        <approval type="manual" />
+      <stage name="boot_postgresqlOnCentos7_stg2">
         <jobs>
-          <job name="defaultJob">
+          <job name="boot_postgresqlOnCentos7_job1">
             <tasks>
               <exec command="bash">
                 <arg>-cl</arg>
@@ -82,24 +146,39 @@
           </job>
         </jobs>
       </stage>
+      <stage name="ansibleInstall_postgresqlOnCentos7_stg3">
+        <jobs>
+          <job name="ansibleInstall_postgresqlOnCentos7_job1">
+            <tasks>
+              <exec command="bash">
+                <arg>-cl</arg>
+                <arg>ansible-playbook deploy_DBs/postgresqlDB/postgresql_playbook.yml -i deploy_DBs/postgresqlDB/postgresql_ansible_hosts</arg>
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
     </pipeline>
-    <pipeline name="destroy_centos7vm1" isLocked="false">
+    <pipeline name="ansibleInstal_postgresqlOnCentos7_p" isLocked="false">
       <environmentvariables>
         <variable name="VAGRANT_DOTFILE_PATH">
           <value>/Users/hmohan/centos7vm/.vagrant</value>
+        </variable>
+        <variable name="ANSIBLE_HOST_KEY_CHECKING">
+          <value>False</value>
         </variable>
       </environmentvariables>
       <materials>
         <git url="/Users/hmohan/centos7vm" />
       </materials>
-      <stage name="defaultStage">
+      <stage name="ansibleInstal_postgresqlOnCentos7_stg1">
         <approval type="manual" />
         <jobs>
-          <job name="defaultJob">
+          <job name="ansibleInstal_postgresqlOnCentos7_job1">
             <tasks>
               <exec command="bash">
                 <arg>-cl</arg>
-                <arg>vagrant destroy "centos7Vm1"</arg>
+                <arg>ansible-playbook deploy_DBs/postgresqlDB/postgresql_playbook.yml -i deploy_DBs/postgresqlDB/postgresql_ansible_hosts</arg>
                 <runif status="passed" />
               </exec>
             </tasks>
