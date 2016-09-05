@@ -4,7 +4,7 @@
 # This script and others need re-factoring to parameterise vm name so that these could be used for other vms also.
 
 TEMPSTR=`vagrant status | grep "postgresqlOnCentos7" | sed 's/postgresqlOnCentos7//g' | xargs`
-if [ "$TEMPSTR" == 'not created (virtualbox)' ]; then
+if [ -z "$TEMPSTR" ]; then
   echo 'No such VM to destroy'
 else
   echo 'destroying vm please wait...'
