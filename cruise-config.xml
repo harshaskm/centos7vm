@@ -52,7 +52,8 @@
             <tasks>
               <exec command="bash">
                 <arg>-cl</arg>
-                <arg>vagrant postgresqlOnCentos7 halt</arg>
+                <arg>vagrant halt postgresqlOnCentos7</arg>
+                <runif status="passed" />
               </exec>
             </tasks>
           </job>
