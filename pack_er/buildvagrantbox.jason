@@ -1,0 +1,17 @@
+{
+  "builders": [{
+    "type": "virtualbox-iso",
+    "guest_os_type": "RedHat_64",
+    "iso_checksum_type": "md5",
+    "iso_checksum": "88c0437f0a14c6e2c94426df9d43cd67",
+    "iso_url": "file:///Users/hmohan/Downloads/CentOS-7-x86_64-Minimal-1511.iso",
+    "ssh_username": "vagrant",
+    "ssh_password": "vagrant",
+    "shutdown_command": "sudo -S shutdown -P now"
+    "boot_command": [
+      "<wait><esc><esc>",
+      "linux ks=http://{{.HTTPIP}}:{{.HTTPPort}}/kickstart<enter>"
+  }],
+  "post-processors": ["vagrant"]
+}
+
