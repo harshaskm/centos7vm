@@ -1,6 +1,6 @@
 Vagrant.configure(2) do |config|
   config.vm.define "postgresqlOnCentos7" do |server|
-    server.vm.box = "centos/7"
+    server.vm.box = "custom_packer_built_sep2016_v1"
     server.ssh.insert_key = false
     server.vm.network :forwarded_port, host: 27018, guest: 22
     server.vm.network "private_network", ip: "192.168.56.10", :netmask => "255.255.0.0"
