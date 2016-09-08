@@ -36,6 +36,25 @@
         </jobs>
       </stage>
     </pipeline>
+    <pipeline name="packer_build_centos7_p" isLocked="false">
+      <materials>
+        <git url="/Users/hmohan/centos7vm" />
+      </materials>
+      <stage name="packer_build_centos7_stg1">
+        <approval type="manual" />
+        <jobs>
+          <job name="packer_build_centos7_job1">
+            <tasks>
+              <exec command="bash">
+                <arg>-cl</arg>
+                <arg>pack_er/packer build buildvagrantbox.jason</arg>
+                <runif status="passed" />
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+    </pipeline>
     <pipeline name="halt_postgresqlOnCentos7_p" isLocked="false">
       <environmentvariables>
         <variable name="VAGRANT_DOTFILE_PATH">
