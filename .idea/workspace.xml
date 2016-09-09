@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6f379e9c-773f-4ac2-8f81-d0598511fc29" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cruise-config.xml" afterPath="$PROJECT_DIR$/cruise-config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pack_er/buildvagrantbox.jason" afterPath="$PROJECT_DIR$/pack_er/buildvagrantbox.jason" />
-    </list>
+    <list default="true" id="6f379e9c-773f-4ac2-8f81-d0598511fc29" name="Default" comment="" />
     <ignored path="centos7vm.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -176,12 +173,12 @@
       <workItem from="1473087709341" duration="734000" />
       <workItem from="1473141050144" duration="693000" />
       <workItem from="1473151952234" duration="260000" />
-      <workItem from="1473327006402" duration="586000" />
+      <workItem from="1473327006402" duration="764000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22668000" />
+    <option name="totallyTimeSpent" value="22846000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
