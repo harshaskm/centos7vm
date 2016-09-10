@@ -47,7 +47,7 @@
             <tasks>
               <exec command="bash">
                 <arg>-cl</arg>
-                <arg>pack_er/packer build buildvagrantbox.jason</arg>
+                <arg>pack_er/packer_build.sh</arg>
                 <runif status="passed" />
               </exec>
             </tasks>
