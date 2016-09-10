@@ -25,7 +25,7 @@ echo List of boxes currently registered with Vagrant before adding the newly gen
   vagrant box list
 
 echo Adding the newly generated box file to Vagrant
-  vagrant box add --name 'custom_packer_built_sep2016_v1' packer_virtualbox-iso_virtualbox.box
+  vagrant box add --force --name 'custom_packer_built' ~/.vagrant.d/boxes/packer_virtualbox-iso_virtualbox.box
 
 echo Checking the list of boxes registered with Vagrant, once more
 # A better way for this, is to catch the success or failure of the previous command and then check the output of this command and show messages
