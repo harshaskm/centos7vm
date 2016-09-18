@@ -34,4 +34,14 @@
   command: systemctl enable postgresql-9.5
   tags: enablePosgresService
 
+# Until here we just built the VM and installed Postgresql software.
+# we have not created any database yet.
+
+- name: Set home folder for postgres OS user
+  user: name=postgres state=present home=/home/postgres/
+
+
+
+
+
 

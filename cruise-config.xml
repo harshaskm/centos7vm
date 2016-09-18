@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <cruise xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cruise-config.xsd" schemaVersion="84">
-  <server artifactsdir="artifacts" commandRepositoryLocation="default" serverId="a21d12c1-16c6-40b0-a3af-0dc47f900305" />
+  <server artifactsdir="artifacts" commandRepositoryLocation="default" serverId="44d29d9d-ebdb-4d67-a594-0ab76b43a482" />
   <pipelines group="postgresqlOnCentos7">
     <pipeline name="cycle_postgresqlOnCentos7_p" isLocked="false">
       <environmentvariables>
@@ -582,7 +582,7 @@
     </pipeline>
   </pipelines>
   <agents>
-    <agent hostname="SRIs-MBP" ipaddress="127.0.0.1" uuid="1bc23a57-9c70-4475-8600-60060d7cd52c" />
+    <agent hostname="SRIs-MBP" ipaddress="127.0.0.1" uuid="ea002344-f8c7-4435-ad64-9f052f945f7d" />
   </agents>
 </cruise>
 
