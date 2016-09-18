@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <cruise xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cruise-config.xsd" schemaVersion="84">
-  <server artifactsdir="artifacts" commandRepositoryLocation="default" serverId="df4cf315-1045-4203-b732-958a9298b667" />
+  <server artifactsdir="artifacts" commandRepositoryLocation="default" serverId="a21d12c1-16c6-40b0-a3af-0dc47f900305" />
   <pipelines group="postgresqlOnCentos7">
     <pipeline name="cycle_postgresqlOnCentos7_p" isLocked="false">
       <environmentvariables>
@@ -207,6 +207,193 @@
       </stage>
     </pipeline>
   </pipelines>
+  <pipelines group="citus1OnPgCentos7">
+    <pipeline name="cycle_citus1OnPgCentos7_p" isLocked="false">
+      <environmentvariables>
+        <variable name="VAGRANT_DOTFILE_PATH">
+          <value>/Users/hmohan/centos7vm/.vagrant</value>
+        </variable>
+      </environmentvariables>
+      <materials>
+        <git url="/Users/hmohan/centos7vm" />
+      </materials>
+      <stage name="halt_citus1OnPgCentos7_stg1">
+        <approval type="manual" />
+        <jobs>
+          <job name="halt_citus1OnPgCentos7_job1">
+            <tasks>
+              <exec command="bash">
+                <arg>-cl</arg>
+                <arg>vagrant halt citus1OnPgCentos7</arg>
+                <runif status="passed" />
+              </exec>
+              <exec command="bash">
+                <arg>-cl</arg>
+                <arg>vagrant up citus1OnPgCentos7</arg>
+                <runif status="passed" />
+              </exec>
+              <exec command="bash">
+                <arg>-cl</arg>
+                <arg>vagrant halt citus1OnPgCentos7</arg>
+                <runif status="passed" />
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+    </pipeline>
+    <pipeline name="halt_citus1OnPgCentos7_p" isLocked="false">
+      <environmentvariables>
+        <variable name="VAGRANT_DOTFILE_PATH">
+          <value>/Users/hmohan/centos7vm/.vagrant</value>
+        </variable>
+      </environmentvariables>
+      <materials>
+        <git url="/Users/hmohan/centos7vm" />
+      </materials>
+      <stage name="halt_citus1OnPgCentos7_stg1">
+        <approval type="manual" />
+        <jobs>
+          <job name="halt_citus1OnPgCentos7_job1">
+            <tasks>
+              <exec command="bash">
+                <arg>-cl</arg>
+                <arg>vagrant halt citus1OnPgCentos7</arg>
+                <runif status="passed" />
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+    </pipeline>
+    <pipeline name="boot_citus1OnPgCentos7_p" isLocked="false">
+      <environmentvariables>
+        <variable name="VAGRANT_DOTFILE_PATH">
+          <value>/Users/hmohan/centos7vm/.vagrant</value>
+        </variable>
+      </environmentvariables>
+      <materials>
+        <git url="/Users/hmohan/centos7vm" />
+      </materials>
+      <stage name="up_citus1OnPgCentos7_stg1">
+        <approval type="manual" />
+        <jobs>
+          <job name="up_citus1OnPgCentos7_job1">
+            <tasks>
+              <exec command="bash">
+                <arg>-cl</arg>
+                <arg>vagrant up citus1OnPgCentos7</arg>
+                <runif status="passed" />
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+    </pipeline>
+    <pipeline name="destroy_citus1OnPgCentos7_p" isLocked="false">
+      <environmentvariables>
+        <variable name="VAGRANT_DOTFILE_PATH">
+          <value>/Users/hmohan/centos7vm/.vagrant</value>
+        </variable>
+      </environmentvariables>
+      <materials>
+        <git url="/Users/hmohan/centos7vm" />
+      </materials>
+      <stage name="destory_citus1OnPgCentos7_stg1">
+        <approval type="manual" />
+        <jobs>
+          <job name="destroy_citus1OnPgCentos7_job1">
+            <tasks>
+              <exec command="bash">
+                <arg>-cl</arg>
+                <arg>deploy_DBs/citus1OnPgCentos7/scripts/destroy_citus1OnPgCentos7.sh</arg>
+                <runif status="passed" />
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+    </pipeline>
+    <pipeline name="reIncarnate_citus1OnPgCentos7_p" isLocked="false">
+      <environmentvariables>
+        <variable name="VAGRANT_DOTFILE_PATH">
+          <value>/Users/hmohan/centos7vm/.vagrant</value>
+        </variable>
+        <variable name="ANSIBLE_HOST_KEY_CHECKING">
+          <value>False</value>
+        </variable>
+      </environmentvariables>
+      <materials>
+        <git url="/Users/hmohan/centos7vm" />
+      </materials>
+      <stage name="destroy_citus1OnPgCentos7_stg1">
+        <approval type="manual" />
+        <jobs>
+          <job name="destroy_citus1OnPgCentos7_job1">
+            <tasks>
+              <exec command="bash">
+                <arg>-cl</arg>
+                <arg>deploy_DBs/citus1OnPgCentos7/scripts/destroy_citus1OnPgCentos7.sh</arg>
+                <runif status="passed" />
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+      <stage name="boot_citus1OnPgCentos7_stg2">
+        <jobs>
+          <job name="boot_citus1OnPgCentos7_job1">
+            <tasks>
+              <exec command="bash">
+                <arg>-cl</arg>
+                <arg>vagrant up citus1OnPgCentos7</arg>
+                <runif status="passed" />
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+      <stage name="ansibleInstall_citus1OnPgCentos7_stg3">
+        <jobs>
+          <job name="ansibleInstall_citus1OnPgCentos7_job1">
+            <tasks>
+              <exec command="bash">
+                <arg>-cl</arg>
+                <arg>ansible-playbook deploy_DBs/citus1OnPgCentos7/citus1_playbook.yml -i deploy_DBs/citus1OnPgCentos7/citus1_ansible_hosts</arg>
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+    </pipeline>
+    <pipeline name="ansibleInstal_citus1OnPgCentos7_p" isLocked="false">
+      <environmentvariables>
+        <variable name="VAGRANT_DOTFILE_PATH">
+          <value>/Users/hmohan/centos7vm/.vagrant</value>
+        </variable>
+        <variable name="ANSIBLE_HOST_KEY_CHECKING">
+          <value>False</value>
+        </variable>
+      </environmentvariables>
+      <materials>
+        <git url="/Users/hmohan/centos7vm" />
+      </materials>
+      <stage name="ansibleInstal_citus1OnPgCentos7_stg1">
+        <approval type="manual" />
+        <jobs>
+          <job name="ansibleInstal_citus1OnPgCentos7_job1">
+            <tasks>
+              <exec command="bash">
+                <arg>-cl</arg>
+                <arg>ansible-playbook deploy_DBs/citus1OnPgCentos7/citus1_playbook.yml -i deploy_DBs/citus1OnPgCentos7/citus1_ansible_hosts</arg>
+                <runif status="passed" />
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+    </pipeline>
+  </pipelines>
   <pipelines group="mysqlOnCentos7">
     <pipeline name="cycle_mysqlOnCentos7_p" isLocked="false">
       <environmentvariables>
@@ -395,7 +582,7 @@
     </pipeline>
   </pipelines>
   <agents>
-    <agent hostname="SRIs-MBP" ipaddress="127.0.0.1" uuid="7d86838e-2971-44c7-8777-1ce82b90ddb2" />
+    <agent hostname="SRIs-MBP" ipaddress="127.0.0.1" uuid="1bc23a57-9c70-4475-8600-60060d7cd52c" />
   </agents>
 </cruise>
 
