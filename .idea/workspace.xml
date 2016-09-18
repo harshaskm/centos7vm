@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6f379e9c-773f-4ac2-8f81-d0598511fc29" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.vagrant/machines/mysqlOnCentos7/virtualbox/action_provision" afterPath="$PROJECT_DIR$/.vagrant/machines/mysqlOnCentos7/virtualbox/action_provision" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.vagrant/machines/mysqlOnCentos7/virtualbox/action_set_name" afterPath="$PROJECT_DIR$/.vagrant/machines/mysqlOnCentos7/virtualbox/action_set_name" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.vagrant/machines/mysqlOnCentos7/virtualbox/id" afterPath="$PROJECT_DIR$/.vagrant/machines/mysqlOnCentos7/virtualbox/id" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.vagrant/machines/mysqlOnCentos7/virtualbox/index_uuid" afterPath="$PROJECT_DIR$/.vagrant/machines/mysqlOnCentos7/virtualbox/index_uuid" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cruise-config.xml" afterPath="$PROJECT_DIR$/cruise-config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deploy_DBs/mysqlDB/roles/createdb/tasks/main.yml" afterPath="$PROJECT_DIR$/deploy_DBs/mysqlDB/roles/createdb/tasks/main.yml" />
-    </list>
+    <list default="true" id="6f379e9c-773f-4ac2-8f81-d0598511fc29" name="Default" comment="" />
     <ignored path="centos7vm.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -43,7 +35,7 @@
         <entry file="file://$PROJECT_DIR$/cruise-config.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="349">
-              <caret line="204" column="16" selection-start-line="0" selection-start-column="0" selection-end-line="420" selection-end-column="0" />
+              <caret line="184" column="16" selection-start-line="0" selection-start-column="0" selection-end-line="401" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -325,12 +317,12 @@
       <workItem from="1473151952234" duration="260000" />
       <workItem from="1473327006402" duration="764000" />
       <workItem from="1473662312057" duration="4630000" />
-      <workItem from="1474181167247" duration="1364000" />
+      <workItem from="1474181167247" duration="1573000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28840000" />
+    <option name="totallyTimeSpent" value="29049000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -778,7 +770,7 @@
     <entry file="file://$PROJECT_DIR$/cruise-config.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="349">
-          <caret line="204" column="16" selection-start-line="0" selection-start-column="0" selection-end-line="420" selection-end-column="0" />
+          <caret line="184" column="16" selection-start-line="0" selection-start-column="0" selection-end-line="401" selection-end-column="0" />
           <folding />
         </state>
       </provider>

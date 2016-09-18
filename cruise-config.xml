@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <cruise xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cruise-config.xsd" schemaVersion="84">
-  <server artifactsdir="artifacts" commandRepositoryLocation="default" serverId="4b87acd0-63a4-48b8-a375-2080b85a3be8" />
+  <server artifactsdir="artifacts" commandRepositoryLocation="default" serverId="df4cf315-1045-4203-b732-958a9298b667" />
   <pipelines group="postgresqlOnCentos7">
     <pipeline name="cycle_postgresqlOnCentos7_p" isLocked="false">
       <environmentvariables>
@@ -18,17 +18,17 @@
             <tasks>
               <exec command="bash">
                 <arg>-cl</arg>
-                <arg>vagrant postgresqlOnCentos7 halt</arg>
+                <arg>vagrant halt postgresqlOnCentos7</arg>
                 <runif status="passed" />
               </exec>
               <exec command="bash">
                 <arg>-cl</arg>
-                <arg>vagrant postgresqlOnCentos7 up</arg>
+                <arg>vagrant up postgresqlOnCentos7</arg>
                 <runif status="passed" />
               </exec>
               <exec command="bash">
                 <arg>-cl</arg>
-                <arg>vagrant postgresqlOnCentos7 halt</arg>
+                <arg>vagrant halt postgresqlOnCentos7</arg>
                 <runif status="passed" />
               </exec>
             </tasks>
@@ -95,7 +95,7 @@
             <tasks>
               <exec command="bash">
                 <arg>-cl</arg>
-                <arg>vagrant up</arg>
+                <arg>vagrant up postgresqlOnCentos7</arg>
                 <runif status="passed" />
               </exec>
             </tasks>
@@ -159,7 +159,7 @@
             <tasks>
               <exec command="bash">
                 <arg>-cl</arg>
-                <arg>vagrant up</arg>
+                <arg>vagrant up postgresqlOnCentos7</arg>
                 <runif status="passed" />
               </exec>
             </tasks>
@@ -224,17 +224,17 @@
             <tasks>
               <exec command="bash">
                 <arg>-cl</arg>
-                <arg>vagrant mysqlOnCentos7 halt</arg>
+                <arg>vagrant halt mysqlOnCentos7</arg>
                 <runif status="passed" />
               </exec>
               <exec command="bash">
                 <arg>-cl</arg>
-                <arg>vagrant mysqlOnCentos7 up</arg>
+                <arg>vagrant up mysqlOnCentos7</arg>
                 <runif status="passed" />
               </exec>
               <exec command="bash">
                 <arg>-cl</arg>
-                <arg>vagrant mysqlOnCentos7 halt</arg>
+                <arg>vagrant halt mysqlOnCentos7</arg>
                 <runif status="passed" />
               </exec>
             </tasks>
@@ -282,7 +282,7 @@
             <tasks>
               <exec command="bash">
                 <arg>-cl</arg>
-                <arg>vagrant up</arg>
+                <arg>vagrant up mysqlOnCentos7</arg>
                 <runif status="passed" />
               </exec>
             </tasks>
@@ -346,7 +346,7 @@
             <tasks>
               <exec command="bash">
                 <arg>-cl</arg>
-                <arg>vagrant up</arg>
+                <arg>vagrant up mysqlOnCentos7</arg>
                 <runif status="passed" />
               </exec>
             </tasks>
@@ -395,7 +395,7 @@
     </pipeline>
   </pipelines>
   <agents>
-    <agent hostname="SRIs-MBP" ipaddress="127.0.0.1" uuid="196d1733-bb02-4683-be55-6437985d3fe9" />
+    <agent hostname="SRIs-MBP" ipaddress="127.0.0.1" uuid="7d86838e-2971-44c7-8777-1ce82b90ddb2" />
   </agents>
 </cruise>
 
