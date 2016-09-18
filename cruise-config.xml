@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <cruise xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cruise-config.xsd" schemaVersion="84">
-  <server artifactsdir="artifacts" commandRepositoryLocation="default" serverId="31296be0-ac11-48e4-b5e5-0d594ccf4b41" />
+  <server artifactsdir="artifacts" commandRepositoryLocation="default" serverId="4b87acd0-63a4-48b8-a375-2080b85a3be8" />
   <pipelines group="postgresqlOnCentos7">
     <pipeline name="cycle_postgresqlOnCentos7_p" isLocked="false">
       <environmentvariables>
@@ -207,8 +207,195 @@
       </stage>
     </pipeline>
   </pipelines>
+  <pipelines group="mysqlOnCentos7">
+    <pipeline name="cycle_mysqlOnCentos7_p" isLocked="false">
+      <environmentvariables>
+        <variable name="VAGRANT_DOTFILE_PATH">
+          <value>/Users/hmohan/centos7vm/.vagrant</value>
+        </variable>
+      </environmentvariables>
+      <materials>
+        <git url="/Users/hmohan/centos7vm" />
+      </materials>
+      <stage name="halt_mysqlOnCentos7_stg1">
+        <approval type="manual" />
+        <jobs>
+          <job name="halt_mysqlOnCentos7_job1">
+            <tasks>
+              <exec command="bash">
+                <arg>-cl</arg>
+                <arg>vagrant mysqlOnCentos7 halt</arg>
+                <runif status="passed" />
+              </exec>
+              <exec command="bash">
+                <arg>-cl</arg>
+                <arg>vagrant mysqlOnCentos7 up</arg>
+                <runif status="passed" />
+              </exec>
+              <exec command="bash">
+                <arg>-cl</arg>
+                <arg>vagrant mysqlOnCentos7 halt</arg>
+                <runif status="passed" />
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+    </pipeline>
+    <pipeline name="halt_mysqlOnCentos7_p" isLocked="false">
+      <environmentvariables>
+        <variable name="VAGRANT_DOTFILE_PATH">
+          <value>/Users/hmohan/centos7vm/.vagrant</value>
+        </variable>
+      </environmentvariables>
+      <materials>
+        <git url="/Users/hmohan/centos7vm" />
+      </materials>
+      <stage name="halt_mysqlOnCentos7_stg1">
+        <approval type="manual" />
+        <jobs>
+          <job name="halt_mysqlOnCentos7_job1">
+            <tasks>
+              <exec command="bash">
+                <arg>-cl</arg>
+                <arg>vagrant halt mysqlOnCentos7</arg>
+                <runif status="passed" />
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+    </pipeline>
+    <pipeline name="boot_mysqlOnCentos7_p" isLocked="false">
+      <environmentvariables>
+        <variable name="VAGRANT_DOTFILE_PATH">
+          <value>/Users/hmohan/centos7vm/.vagrant</value>
+        </variable>
+      </environmentvariables>
+      <materials>
+        <git url="/Users/hmohan/centos7vm" />
+      </materials>
+      <stage name="up_mysqlOnCentos7_stg1">
+        <approval type="manual" />
+        <jobs>
+          <job name="up_mysqlOnCentos7_job1">
+            <tasks>
+              <exec command="bash">
+                <arg>-cl</arg>
+                <arg>vagrant up</arg>
+                <runif status="passed" />
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+    </pipeline>
+    <pipeline name="destroy_mysqlOnCentos7_p" isLocked="false">
+      <environmentvariables>
+        <variable name="VAGRANT_DOTFILE_PATH">
+          <value>/Users/hmohan/centos7vm/.vagrant</value>
+        </variable>
+      </environmentvariables>
+      <materials>
+        <git url="/Users/hmohan/centos7vm" />
+      </materials>
+      <stage name="destory_mysqlOnCentos7_stg1">
+        <approval type="manual" />
+        <jobs>
+          <job name="destroy_mysqlOnCentos7_job1">
+            <tasks>
+              <exec command="bash">
+                <arg>-cl</arg>
+                <arg>deploy_DBs/mysqlDB/scripts/destroy_mysqlOnCentos7.sh</arg>
+                <runif status="passed" />
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+    </pipeline>
+    <pipeline name="reIncarnate_mysqlOnCentos7_p" isLocked="false">
+      <environmentvariables>
+        <variable name="VAGRANT_DOTFILE_PATH">
+          <value>/Users/hmohan/centos7vm/.vagrant</value>
+        </variable>
+        <variable name="ANSIBLE_HOST_KEY_CHECKING">
+          <value>False</value>
+        </variable>
+      </environmentvariables>
+      <materials>
+        <git url="/Users/hmohan/centos7vm" />
+      </materials>
+      <stage name="destroy_mysqlOnCentos7_stg1">
+        <approval type="manual" />
+        <jobs>
+          <job name="destroy_mysqlOnCentos7_job1">
+            <tasks>
+              <exec command="bash">
+                <arg>-cl</arg>
+                <arg>deploy_DBs/mysqlDB/scripts/destroy_mysqlOnCentos7.sh</arg>
+                <runif status="passed" />
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+      <stage name="boot_mysqlOnCentos7_stg2">
+        <jobs>
+          <job name="boot_mysqlOnCentos7_job1">
+            <tasks>
+              <exec command="bash">
+                <arg>-cl</arg>
+                <arg>vagrant up</arg>
+                <runif status="passed" />
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+      <stage name="ansibleInstall_mysqlOnCentos7_stg3">
+        <jobs>
+          <job name="ansibleInstall_mysqlOnCentos7_job1">
+            <tasks>
+              <exec command="bash">
+                <arg>-cl</arg>
+                <arg>ansible-playbook deploy_DBs/mysqlDB/mysql_playbook.yml -i deploy_DBs/mysqlDB/mysql_ansible_hosts</arg>
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+    </pipeline>
+    <pipeline name="ansibleInstal_mysqlOnCentos7_p" isLocked="false">
+      <environmentvariables>
+        <variable name="VAGRANT_DOTFILE_PATH">
+          <value>/Users/hmohan/centos7vm/.vagrant</value>
+        </variable>
+        <variable name="ANSIBLE_HOST_KEY_CHECKING">
+          <value>False</value>
+        </variable>
+      </environmentvariables>
+      <materials>
+        <git url="/Users/hmohan/centos7vm" />
+      </materials>
+      <stage name="ansibleInstal_mysqlOnCentos7_stg1">
+        <approval type="manual" />
+        <jobs>
+          <job name="ansibleInstal_mysqlOnCentos7_job1">
+            <tasks>
+              <exec command="bash">
+                <arg>-cl</arg>
+                <arg>ansible-playbook deploy_DBs/mysqlDB/mysql_playbook.yml -i deploy_DBs/mysqlDB/mysql_ansible_hosts</arg>
+                <runif status="passed" />
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+    </pipeline>
+  </pipelines>
   <agents>
-    <agent hostname="SRIs-MacBook-Pro.local" ipaddress="127.0.0.1" uuid="9cb9748d-038f-4e20-8cd2-43818bc5c914" />
+    <agent hostname="SRIs-MBP" ipaddress="127.0.0.1" uuid="196d1733-bb02-4683-be55-6437985d3fe9" />
   </agents>
 </cruise>
 
