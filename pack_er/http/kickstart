@@ -3,7 +3,7 @@ text
 cdrom
 lang en_US.UTF-8
 keyboard us
-network --onboot yes --device eth0 --bootproto dhcp --noipv6 --hostname vagrant-centos-6.vagrantup.com
+network --onboot yes --device eth0 --bootproto static --noipv6 --hostname mysqlOnCentos7 --ip=192.168.56.11 --netmask=255.255.0.0 --nameserver=10.0.2.3 --gateway=192.168.1.1
 rootpw vagrant
 firewall --disabled
 authconfig --enableshadow --passalgo=sha512
@@ -38,7 +38,6 @@ EOF
 /bin/chmod 0440 /etc/sudoers.d/wheel
 /bin/mkdir /home/vagrant/.ssh
 /bin/chmod 700 /home/vagrant/.ssh
-/usr/bin/curl -L -o /home/vagrant/.ssh/id_rsa https://github.com/harshaskm/centos7vm/blob/master/pack_er/vagrant_id_rsa
 /usr/bin/curl -L -o /home/vagrant/.ssh/authorized_keys https://github.com/harshaskm/centos7vm/blob/master/pack_er/vagrant_authorized_keys
 /bin/chown -R vagrant:vagrant /home/vagrant/.ssh
 /bin/chmod 0400 /home/vagrant/.ssh/*

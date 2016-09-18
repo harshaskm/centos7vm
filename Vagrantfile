@@ -14,4 +14,18 @@ Vagrant.configure(2) do |config|
     end
   end
 
+  config.vm.define "mysqlOnCentos7" do |mysqlserver1|
+    mysqlserver1.vm.box = "centos/7"
+    mysqlserver1.ssh.insert_key = false
+    mysqlserver1.vm.network :forwarded_port, host: 27019, guest: 22
+    mysqlserver1.vm.network "private_network", ip: "192.168.56.11", :netmask => "255.255.0.0"
+    mysqlserver1.vm.hostname = "mysqlOnCentos7"
+    mysqlserver1.vm.provision :shell, inline: "systemctl enable firewalld"
+    mysqlserver1.vm.provision :shell, inline: "systemctl start firewalld"
+    mysqlserver1.vm.provider "virtualbox" do |v|
+      v.gui = false
+      memory = "1024"
+      v.name = "mysqlOnCentos7"
+    end
+  end
 end

@@ -1,0 +1,1 @@
+{"rsync":{"/vagrant":{"type":"rsync","guestpath":"/vagrant","hostpath":"/Users/hmohan/Library/Application Support/Go Agent/pipelines/reIncarnate_postgresqlOnCentos7_p","disabled":false,"__vagrantfile":true,"owner":"vagrant","group":"vagrant"}}}

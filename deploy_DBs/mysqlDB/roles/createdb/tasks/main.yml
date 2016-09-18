@@ -1,0 +1,57 @@
+---
+- name: Ensure bash, OpenSSL, and libssl are the latest versions
+  yum: name={{ item }} update_cache=true state=latest
+  with_items:
+    - bash
+    - openssl
+#    - libssl-dev
+#    - libssl-doc
+  tags: packages
+
+- name: For Base "Add a line with the text to the yum repo file if it does not exist"
+  lineinfile: >
+    dest=/etc/yum.repos.d/CentOS-Base.repo
+    insertafter="Base"
+    line="exclude=postgresql*"
+  tags: modifyYumFile
+
+- name: For Updates "Add a line with the text to the yum repo file if it does not exist"
+  lineinfile: >
+    dest=/etc/yum.repos.d/CentOS-Base.repo
+    insertafter="Updates"
+    line=" exclude=postgresql*"
+  tags: modifyYumFile
+
+- name: install postgres yum repo from http://yum.postgresql.org/repopackages.php#pg95 (for version 9.5)
+  yum: name=https://download.postgresql.org/pub/repos/yum/9.5/redhat/rhel-7-x86_64/pgdg-centos95-9.5-2.noarch.rpm state=present
+  tags: installYumRepoForPostgres
+
+- name: install Postgres9.5 server
+  yum: name=postgresql95-server state=present
+  tags: installPostgresServer95
+
+- name: Enable the postgres db service (this is equivalent to chkconfig on)
+  command: systemctl enable postgresql-9.5
+  tags: enablePosgresService
+
+- command: ls -l /var/lib/pgsql/9.5/data
+  register: p
+
+#Commented lines here help to visualize the contents of the registered variable
+#- name: check p.exists value
+#  debug: msg="{{ p.stdout }}"
+
+- name: This is to initialize the settings that are required for the db to be started and function.
+  command: /usr/pgsql-9.5/bin/postgresql95-setup initdb
+  when: p.stdout == "total 0"
+  tags: initdb
+
+- name: Start the database service
+  command: sudo systemctl start postgresql-9.5.service
+
+
+
+
+
+
+
