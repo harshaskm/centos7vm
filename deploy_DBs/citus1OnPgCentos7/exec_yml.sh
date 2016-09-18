@@ -1,0 +1,2 @@
+export ANSIBLE_HOST_KEY_CHECKING=False
+ansible-playbook -i citus1_ansible_hosts citus1_playbook.yml

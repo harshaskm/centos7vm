@@ -28,4 +28,21 @@ Vagrant.configure(2) do |config|
       v.name = "mysqlOnCentos7"
     end
   end
+
+  config.vm.define "citus1OnPgCentos7" do |citus1OnPgServer1|
+    citus1OnPgServer1.vm.box = "centos/7"
+    citus1OnPgServer1.ssh.insert_key = false
+    citus1OnPgServer1.vm.network :forwarded_port, host: 27020, guest: 22
+    citus1OnPgServer1.vm.network "private_network", ip: "192.168.56.12", :netmask => "255.255.0.0"
+    citus1OnPgServer1.vm.hostname = "citus1OnPgCentos7"
+    citus1OnPgServer1.vm.provision :shell, inline: "systemctl enable firewalld"
+    citus1OnPgServer1.vm.provision :shell, inline: "systemctl start firewalld"
+    citus1OnPgServer1.vm.provider "virtualbox" do |v|
+      v.gui = false
+      memory = "1024"
+      v.name = "citus1OnPgCentos7"
+    end
+  end
+
 end
+
