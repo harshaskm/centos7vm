@@ -48,9 +48,8 @@
         home=/home/citus1/
         state=present
 
-- name: Create a .ssh folder under citus1 home directory
-  file: name=.ssh 
-
+- name: Using github url as authorized key source for citus1 user
+  authorized_key: user=citus1 key=https://raw.githubusercontent.com/harshaskm/centos7vm/master/filesForVMs/put_into_citus1vm_auth_key
 
 
 
