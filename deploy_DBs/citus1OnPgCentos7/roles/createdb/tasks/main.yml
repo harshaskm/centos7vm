@@ -37,8 +37,20 @@
 # Until here we just built the VM and installed Postgresql software.
 # we have not created any database yet.
 
-- name: Set home folder for postgres OS user
-  user: name=postgres state=present home=/home/postgres/
+- name: Add a group to assign to the OS user which will be created in the next step
+  group: name=citus1 state=present
+
+- name: Create a user to access and work with the Postgres databases
+  user: name=citus1
+        createhome=yes
+        group=citus1
+        groups=postgres
+        home=/home/citus1/
+        state=present
+
+- name: Create a .ssh folder under citus1 home directory
+  file: name=.ssh 
+
 
 
 

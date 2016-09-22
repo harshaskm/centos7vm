@@ -1,25 +1,5 @@
 ---
 
-- name: (ensure file exists) Creating bash script to download and perform initial actions for Citus tutorial
-  copy:
-    content: "curl https://packages.citusdata.com/tutorials/citus-tutorial-linux-1.1.0.tar.gz > /home/postgres/citus-tutorial-linux-1.1.0.tar.gz; chown -R postgres:postgres /home/postgres"
-    dest: /home/postgres/prep_citus_tutorial.sh
-    force: no
-    group: postgres
-    owner: postgres
-    mode: 0755
-  tags: create_prep_script
-
-- name: Download the tutorial
-  shell: /home/postgres/prep_citus_tutorial.sh
-  tags: exec_prep_script
-
-- name: Gunzip the tutorial package 
-  unarchive: src=/home/postgres/citus-tutorial-linux-1.1.0.tar.gz
-              dest=/home/postgres/
-              owner=postgres
-              group=postgres
-              mode=0755
 
 
 
