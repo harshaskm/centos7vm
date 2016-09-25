@@ -6,10 +6,10 @@
 #     ansible-playbook -i citus1_tutorial_hosts citus1_tutorial_playbook.yml
 
 - name: Add alias 'l' to .bash_profile for citus1
-  shell: echo alias l='ls -ltrh' >> ~/.bash_profile
+  shell: echo alias l="'ls -ltrh'" >> ~/.bash_profile
 
 - name: Add alias 'eb' to .bash_profile for citus1
-  shell: echo alias eb='vi ~/.bash_profile' >> ~/.bash_profile
+  shell: echo alias eb="'vi ~/.bash_profile'" >> ~/.bash_profile
 
 - name: create a citus-tutorial directory if it doesn't exist 
   file: path=/home/citus1/citus-tutorial state=directory
@@ -28,6 +28,8 @@
         mode=0775
         owner=citus1
         dest=/home/citus1/citus-tutorial
+        timeout=10
+        force=no
   tags: downloadcitustutorial
 
 # Strange thing what I have faced here is, in the previous command get_url, I have used options to set Owner and Group
