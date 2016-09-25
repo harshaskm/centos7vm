@@ -1,5 +1,59 @@
 ---
 
+# To execute this yml file
+#   change directory to centos7vm/deploy_DBs/citus1OnPgCentos7
+#   and command to execute:
+#     ansible-playbook -i citus1_tutorial_hosts citus1_tutorial_playbook.yml
+- name: create a citus-tutorial directory if it doesn't exist 
+  file: path=/home/citus1/citus-tutorial state=directory
+        mode=0755
+        owner=citus1
+        group=citus1
+
+- name: create a data directory if it doesn't exist 
+  file: path=/home/citus1/data state=directory
+        mode=0755
+        owner=citus1
+        group=citus1
+
+- name: Download archive 
+  get_url: url=https://packages.citusdata.com/tutorials/citus-tutorial-linux-1.1.0.tar.gz
+        mode=0775
+        owner=citus1
+        dest=/home/citus1/citus-tutorial
+  tags: downloadcitustutorial
+
+# Strange thing what I have faced here is, in the previous command get_url, I have used options to set Owner and Group
+#   Yet the next command to gunzip was failing, initially I did not realize the problem, later through option -vvvv
+#   I found that it was complaining about group not being right, here is the exact message:
+#           msg: chgrp failed: failed to look up group citus1
+#   So, thats why I have this next few lines to just set the group properly, and then gunzip started working fine.
+#  Supposedly there is a module named 'unarchive' which should download and unarchive on its own, but did not work for me.
+
+- name: Change the file group info for the downloaded gz file
+  file: path=/home/citus1/citus-tutorial/citus-tutorial-linux-1.1.0.tar.gz
+        owner=citus1
+        group=citus1 
+  tags: changegroupoftutorialfile
+
+- name: Gunzip the tutorial package 
+  command: gunzip -f /home/citus1/citus-tutorial/citus-tutorial-linux-1.1.0.tar.gz
+
+- name: Untar the tutorial package 
+  command: tar -xvf /home/citus1/citus-tutorial/citus-tutorial-linux-1.1.0.tar
+
+- command: ls -l /home/citus1/data
+  register: p  
+
+- name: initdb for master database 
+  command: /home/citus1/citus-tutorial/bin/initdb -D data/master  
+  when: p.stdout == "total 0"
+
+- name: initdb for worker database 
+  command: /home/citus1/citus-tutorial/bin/initdb -D data/worker 
+  when: p.stdout == "total 0"
+
+
 
 
 

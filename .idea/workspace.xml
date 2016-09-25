@@ -2,12 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6f379e9c-773f-4ac2-8f81-d0598511fc29" name="Default" comment="">
+      <change type="MOVED" beforePath="$PROJECT_DIR$/deploy_DBs/citus1OnPgCentos7/roles/createdb/handlers/main.yml" afterPath="$PROJECT_DIR$/deploy_DBs/citus1OnPgCentos7/roles/installPostgres/handlers/main.yml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/deploy_DBs/citus1OnPgCentos7/roles/createdb/tasks/main.yml" afterPath="$PROJECT_DIR$/deploy_DBs/citus1OnPgCentos7/roles/installPostgres/tasks/main.yml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.vagrant/machines/citus1OnPgCentos7/virtualbox/action_provision" afterPath="$PROJECT_DIR$/.vagrant/machines/citus1OnPgCentos7/virtualbox/action_provision" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.vagrant/machines/citus1OnPgCentos7/virtualbox/action_set_name" afterPath="$PROJECT_DIR$/.vagrant/machines/citus1OnPgCentos7/virtualbox/action_set_name" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.vagrant/machines/citus1OnPgCentos7/virtualbox/id" afterPath="$PROJECT_DIR$/.vagrant/machines/citus1OnPgCentos7/virtualbox/id" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.vagrant/machines/citus1OnPgCentos7/virtualbox/index_uuid" afterPath="$PROJECT_DIR$/.vagrant/machines/citus1OnPgCentos7/virtualbox/index_uuid" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deploy_DBs/citus1OnPgCentos7/roles/createdb/tasks/main.yml" afterPath="$PROJECT_DIR$/deploy_DBs/citus1OnPgCentos7/roles/createdb/tasks/main.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deploy_DBs/citus1OnPgCentos7/citus1_playbook.yml" afterPath="$PROJECT_DIR$/deploy_DBs/citus1OnPgCentos7/citus1_playbook.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deploy_DBs/citus1OnPgCentos7/exec_yml.sh" afterPath="$PROJECT_DIR$/deploy_DBs/citus1OnPgCentos7/exec_yml.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deploy_DBs/citus1OnPgCentos7/roles/citusdatatutorial/tasks/main.yml" afterPath="$PROJECT_DIR$/deploy_DBs/citus1OnPgCentos7/roles/citusdatatutorial/tasks/main.yml" />
     </list>
     <ignored path="centos7vm.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,21 +32,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.yml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.yml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/deploy_DBs/citus1OnPgCentos7/roles/citusdatatutorial/tasks/main.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.yml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/deploy_DBs/citus1OnPgCentos7/roles/createdb/tasks/main.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+            <state relative-caret-position="498">
+              <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -65,9 +59,10 @@
         <option value="$PROJECT_DIR$/deploy_DBs/mysqlDB/roles/createdb/tasks/main.yml" />
         <option value="$PROJECT_DIR$/cruise-config.xml" />
         <option value="$PROJECT_DIR$/deploy_DBs/citus1OnPgOnCentos7/roles/createdb/tasks/main.yml" />
+        <option value="$PROJECT_DIR$/deploy_DBs/citus1OnPgCentos7/citus1_tutorial_playbook.yml" />
+        <option value="$PROJECT_DIR$/deploy_DBs/citus1OnPgCentos7/roles/createdb/tasks/main.yml" />
         <option value="$PROJECT_DIR$/deploy_DBs/citus1OnPgCentos7/citus1_playbook.yml" />
         <option value="$PROJECT_DIR$/deploy_DBs/citus1OnPgCentos7/roles/citusdatatutorial/tasks/main.yml" />
-        <option value="$PROJECT_DIR$/deploy_DBs/citus1OnPgCentos7/roles/createdb/tasks/main.yml" />
       </list>
     </option>
   </component>
@@ -275,37 +270,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="createdb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tasks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="centos7vm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="centos7vm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="deploy_DBs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="citus1OnPgCentos7" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="roles" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="createdb" />
+              <option name="myItemId" value="installPostgres" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -348,6 +313,8 @@
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="CucumberRunConfigurationType" factoryName="Cucumber">
@@ -464,12 +431,13 @@
       <workItem from="1474192978587" duration="9243000" />
       <workItem from="1474253918687" duration="2282000" />
       <workItem from="1474442520077" duration="1624000" />
-      <workItem from="1474555610546" duration="600000" />
+      <workItem from="1474555610546" duration="1809000" />
+      <workItem from="1474614965592" duration="12114000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42798000" />
+    <option name="totallyTimeSpent" value="56121000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -519,20 +487,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/deploy_DBs/postgresqlDB/.ansible.cfg">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deploy_DBs/postgresqlDB/vars/main.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/deploy_DBs/postgresqlDB/roles/createdb/tasks/main.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
@@ -842,21 +796,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/deploy_DBs/postgresqlDB/roles/createdb/tasks/main.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="33" column="14" selection-start-line="33" selection-start-column="14" selection-end-line="33" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deploy_DBs/citus1OnPgCentos7/citus1_playbook.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="17" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deploy_DBs/citus1OnPgCentos7/roles/citusdatatutorial/tasks/main.yml">
+    <entry file="file://$PROJECT_DIR$/deploy_DBs/citus1OnPgCentos7/citus1_ansible_hosts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
@@ -864,10 +804,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/deploy_DBs/citus1OnPgCentos7/citus1_tutorial_playbook.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/deploy_DBs/citus1OnPgCentos7/roles/createdb/tasks/main.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+        <state relative-caret-position="600">
+          <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deploy_DBs/citus1OnPgCentos7/citus1_playbook.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deploy_DBs/postgresqlDB/roles/createdb/tasks/main.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="45" column="29" selection-start-line="45" selection-start-column="2" selection-end-line="45" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deploy_DBs/citus1OnPgCentos7/roles/citusdatatutorial/tasks/main.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="498">
+          <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
           <folding />
         </state>
       </provider>

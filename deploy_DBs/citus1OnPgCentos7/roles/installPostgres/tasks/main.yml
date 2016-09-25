@@ -30,6 +30,11 @@
   yum: name=postgresql95-server state=present
   tags: installPostgresServer95
 
+- name: create a citus-tutorial directory if it doesn't exist 
+  file: path=/var/lib/pgsql state=directory
+        mode=0755
+        recurse=yes
+
 - name: Enable the postgres db service (this is equivalent to chkconfig on)
   command: systemctl enable postgresql-9.5
   tags: enablePosgresService
@@ -50,7 +55,6 @@
 
 - name: Using github url as authorized key source for citus1 user
   authorized_key: user=citus1 key=https://raw.githubusercontent.com/harshaskm/centos7vm/master/filesForVMs/put_into_citus1vm_auth_key
-
 
 
 

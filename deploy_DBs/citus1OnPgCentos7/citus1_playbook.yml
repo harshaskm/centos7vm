@@ -8,14 +8,4 @@
     - vars/main.yml
 
   roles:
-  - createdb
-
-- name: CitusData tutorial
-  hosts: dbserver
-  sudo: yes
-  sudo_user: root
-  remote_user: postgres
-
-  roles:
-  - citusdatatutorial
-
+  - installPostgres
