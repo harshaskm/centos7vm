@@ -5,6 +5,13 @@
 #   and command to execute:
 #     ansible-playbook -i citus1_tutorial_hosts citus1_tutorial_playbook.yml
 
+# ---~~~~~~*****~~~~~~---
+#
+# Lesson learnt:
+#   Whenever there is a requirement to add text (lines) to a file, you have to use 'shell' module and not 'command' module:
+#
+# ---~~~~~~*****~~~~~~---
+
 - name: Add alias 'l' to .bash_profile for citus1
   shell: echo alias l="'ls -ltrh'" >> ~/.bash_profile
 
@@ -23,6 +30,10 @@
         owner=citus1
         group=citus1
 
+- name: This is to register existance of the citus-tutorial tar file, else it will help to download the same
+  stat: path=/home/citus1/citus-tutorial/citus-tutorial-linux-1.1.0.tar
+  register: p
+
 - name: Download archive 
   get_url: url=https://packages.citusdata.com/tutorials/citus-tutorial-linux-1.1.0.tar.gz
         mode=0775
@@ -30,7 +41,12 @@
         dest=/home/citus1/citus-tutorial
         timeout=10
         force=no
+  when: p.stat.exists == False
   tags: downloadcitustutorial
+
+- name: This is to register existance of the citus-tutorial zip file
+  stat: path=/home/citus1/citus-tutorial/citus-tutorial-linux-1.1.0.tar.gz
+  register: q
 
 # Strange thing what I have faced here is, in the previous command get_url, I have used options to set Owner and Group
 #   Yet the next command to gunzip was failing, initially I did not realize the problem, later through option -vvvv
@@ -43,33 +59,44 @@
   file: path=/home/citus1/citus-tutorial/citus-tutorial-linux-1.1.0.tar.gz
         owner=citus1
         group=citus1 
+  when: q.stat.exists == True
   tags: changegroupoftutorialfile
 
 - name: Gunzip the tutorial package 
   command: gunzip -f /home/citus1/citus-tutorial/citus-tutorial-linux-1.1.0.tar.gz
+  when: q.stat.exists == True
 
 - name: Untar the tutorial package 
   command: tar -xvf /home/citus1/citus-tutorial/citus-tutorial-linux-1.1.0.tar
+  when: p.stat.exists == False
 
-- command: ls -l /home/citus1/data
-  register: p  
+- name: Checking existance of Master database directory
+  stat: path=/home/citus1/data/master
+  register: r
 
-- name: initdb for master database 
-  command: /home/citus1/citus-tutorial/bin/initdb -D data/master  
-  when: p.stdout == "total 0"
+- name: initdb for master database  
+  command: /home/citus1/citus-tutorial/bin/initdb -D data/master 
+  when: r.stat.exists == False
 
-- name: initdb for worker database 
-  command: /home/citus1/citus-tutorial/bin/initdb -D data/worker 
-  when: p.stdout == "total 0"
+- name: Checking existance of Worker database directory
+  stat: path=/home/citus1/data/worker
+  register: s
 
-- name: The master needs to know where it can find the worker
-  command: echo "localhost 9701" >> data/master/pg_worker_list.conf
+- name: initdb for worker database  
+  command: /home/citus1/citus-tutorial/bin/initdb -D data/worker
+  when: s.stat.exists == False
 
-- name: Citus is a Postgres extension. To tell Postgres to use this extension, you’ll need to add it to a configuration variable called shared_preload_libraries
-  command: echo "shared_preload_libraries = 'citus'" >> data/master/postgresql.conf
+- name: If the file /home/citus1/data/master/pg_worker_list.conf does not exist create it
+  shell: echo "localhost 9701" >> /home/citus1/data/master/pg_worker_list.conf
+  when: s.stat.exists == False
 
-- name: In continuation of the previous command
-  command: echo "shared_preload_libraries = 'citus'" >> data/worker/postgresql.conf
+#- name: The master needs to know where it can find the worker 
+#  lineinfile:
+#    dest=/home/citus1/data/master/pg_worker_list.conf 
+#    line="localhost 9701"
+#    state=present
+
+
 
 
 
