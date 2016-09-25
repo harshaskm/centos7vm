@@ -4,6 +4,13 @@
 #   change directory to centos7vm/deploy_DBs/citus1OnPgCentos7
 #   and command to execute:
 #     ansible-playbook -i citus1_tutorial_hosts citus1_tutorial_playbook.yml
+
+- name: Add alias 'l' to .bash_profile for citus1
+  shell: echo alias l='ls -ltrh' >> ~/.bash_profile
+
+- name: Add alias 'eb' to .bash_profile for citus1
+  shell: echo alias eb='vi ~/.bash_profile' >> ~/.bash_profile
+
 - name: create a citus-tutorial directory if it doesn't exist 
   file: path=/home/citus1/citus-tutorial state=directory
         mode=0755
@@ -53,6 +60,14 @@
   command: /home/citus1/citus-tutorial/bin/initdb -D data/worker 
   when: p.stdout == "total 0"
 
+- name: The master needs to know where it can find the worker
+  command: echo "localhost 9701" >> data/master/pg_worker_list.conf
+
+- name: Citus is a Postgres extension. To tell Postgres to use this extension, you’ll need to add it to a configuration variable called shared_preload_libraries
+  command: echo "shared_preload_libraries = 'citus'" >> data/master/postgresql.conf
+
+- name: In continuation of the previous command
+  command: echo "shared_preload_libraries = 'citus'" >> data/worker/postgresql.conf
 
 
 
