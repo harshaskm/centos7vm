@@ -33,6 +33,8 @@ Vagrant.configure(2) do |config|
     citus1OnPgServer1.vm.box = "centos/7"
     citus1OnPgServer1.ssh.insert_key = false
     citus1OnPgServer1.vm.network :forwarded_port, host: 27020, guest: 22
+    citus1OnPgServer1.vm.network :forwarded_port, host: 9700, guest: 9700
+    citus1OnPgServer1.vm.network :forwarded_port, host: 9701, guest: 9701
     citus1OnPgServer1.vm.network "private_network", ip: "192.168.56.12", :netmask => "255.255.0.0"
     citus1OnPgServer1.vm.hostname = "citus1OnPgCentos7"
     citus1OnPgServer1.vm.provision :shell, inline: "systemctl enable firewalld"

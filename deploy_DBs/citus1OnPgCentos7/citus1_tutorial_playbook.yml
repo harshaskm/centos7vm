@@ -2,6 +2,5 @@
 - name: CitusData tutorial
   hosts: dbserver
 
-
   roles:
   - citusdatatutorial

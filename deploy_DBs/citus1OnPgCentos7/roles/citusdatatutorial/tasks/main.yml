@@ -74,6 +74,10 @@
   stat: path=/home/citus1/data/master
   register: r
 
+# Read in the documentation that initdb would create all the necessary postgres database objects in a template1 form
+#   This is essentinally done to create a cluster.
+#   The template will have everything that will be created later when you use a 'createdb' command.
+
 - name: initdb for master database  
   command: /home/citus1/citus-tutorial/bin/initdb -D data/master 
   when: r.stat.exists == False
@@ -86,20 +90,54 @@
   command: /home/citus1/citus-tutorial/bin/initdb -D data/worker
   when: s.stat.exists == False
 
-- name: If the file /home/citus1/data/master/pg_worker_list.conf does not exist create it
-  shell: echo "localhost 9701" >> /home/citus1/data/master/pg_worker_list.conf
-  when: s.stat.exists == False
+- name: "The master needs to know where it can find the worker . If this file does not exist create it"
+  lineinfile: >
+    dest=/home/citus1/data/master/pg_worker_list.conf
+    line="localhost 9701"
+    state=present
+    create=yes
 
-#- name: The master needs to know where it can find the worker 
-#  lineinfile:
-#    dest=/home/citus1/data/master/pg_worker_list.conf 
-#    line="localhost 9701"
-#    state=present
+- name: "Citus is a Postgres extension. To tell Postgres to use this extension, you’ll need to add it to a configuration variable called shared_preload_libraries"
+  lineinfile: >
+    dest=/home/citus1/data/master/postgresql.conf
+    insertafter='^#shared_preload_libraries'
+    line="shared_preload_libraries = 'citus'"
+    state=present
+    create=yes
 
+# name: I tried to remove the fullstop or the comma or the apostrophe but it wouldn't work, finally I just had to wrap
+#   the whole thing in double quotes.
 
+- name: "Citus is a Postgres extension. To tell Postgres to use this extension, you’ll need to add it to a configuration variable called shared_preload_libraries"
+  lineinfile: >
+    dest=/home/citus1/data/worker/postgresql.conf
+    insertafter='^#shared_preload_libraries'
+    line="shared_preload_libraries = 'citus'"
+    state=present
+    create=yes
 
+# So far what I have found is, when you start the database through pg_ctl you can find the postmaster.pid created in the
+#   data/master folder, with the details of the process started.
+#   When you stop the same through pg_ctl again, you will see the postmaster.pid gone.
+#   That way, now I am sure that it is the right thing to do to look for the existance of the file postmaster.pid
+#     to work with starting or stopping the database service. (I am not sure if I can call it that)
+#     remember so far I have not run the 'createdb'
 
+- name: Checking existance of Worker database directory
+  stat: path=/home/citus1/data/master/postmaster.pid
+  register: t
 
+- name: Let’s start the Master database
+  command: /home/citus1/citus-tutorial/bin/pg_ctl -D /home/citus1/data/master -o "-p 9700" -l /home/citus1/data/master/master_logfile start
+  when: t.stat.exists == False
+
+- name: Checking existance of Worker database directory
+  stat: path=/home/citus1/data/worker/postmaster.pid
+  register: u
+
+- name: Let’s start the Master database
+  command: /home/citus1/citus-tutorial/bin/pg_ctl -D /home/citus1/data/worker -o "-p 9701" -l /home/citus1/data/worker/worker_logfile start
+  when: u.stat.exists == False
 
 
 
