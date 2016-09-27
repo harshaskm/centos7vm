@@ -145,11 +145,23 @@
   command: /home/citus1/citus-tutorial/bin/pg_ctl -D /home/citus1/data/worker -o "-p 9701" -l /home/citus1/data/worker/worker_logfile start
   when: u.stat.exists == False
 
-- name: Copy a local script file onto the VM to use it later
-  copy: src=query_db_version.sh
-        dest=/home/citus1/scripts/
-        mode=751
-        owner=citus1
-        group=citus1
+# Found some very good info on this website: http://stackoverflow.com/questions/14549270/check-if-database-exists-in-postgresql-using-shell
+# In there he explains it very well on how to check programatically if a database exists
+# ~/citus-tutorial/bin/psql -l -p 9700
+#   returns information about the databases on the system
+# ~/citus-tutorial/bin/psql -lt -p 9700
+#   removes the header
+# The next bit, cut -d \| -f 1 splits the output by the vertical pipe | character (escaped from the shell with a backslash), and selects field 1
+# Now pipe it all to grep for the db name you are looking for
+# Register the output
+# Finally to be able to use it successfully, capture the exit code of the command
+
+- name: Capturing information to find out if Master database is created already
+  shell: ~/citus-tutorial/bin/psql -lt -p 9700 | cut -d \| -f 1 | grep citus1; echo $?
+  register: v
+
+# Following is how we can printout the content of a variable
+#- debug: var v
+
 
 
