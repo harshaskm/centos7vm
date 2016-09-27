@@ -153,15 +153,33 @@
 #   removes the header
 # The next bit, cut -d \| -f 1 splits the output by the vertical pipe | character (escaped from the shell with a backslash), and selects field 1
 # Now pipe it all to grep for the db name you are looking for
+
+# Also I am putting the output of the entire commmand to a variable
+# Use a if statement to evaluate the variable content
+# And echo success or failure accordingly
 # Register the output
 # Finally to be able to use it successfully, capture the exit code of the command
 
 - name: Capturing information to find out if Master database is created already
-  shell: ~/citus-tutorial/bin/psql -lt -p 9700 | cut -d \| -f 1 | grep citus1; echo $?
+  shell: chk=`~/citus-tutorial/bin/psql -lt -p 9700 | cut -d \| -f 1 | grep "citus1"`; if [ $chk == "citus1" ]; then echo "0"; else echo "1"; fi
   register: v
 
 # Following is how we can printout the content of a variable
-#- debug: var v
+#- debug: var=v.stdout
+
+- name: Createdb for Master database, if it is not already created
+  command: /home/citus1/citus-tutorial/bin/createdb -p 9700 {{ lookup('env', 'whoami') }}
+  when: v.stdout == "1"
+
+- name: Capturing information to find out if Worker database is created already
+  shell: chk=`~/citus-tutorial/bin/psql -lt -p 9701 | cut -d \| -f 1 | grep "citus1"`; if [ $chk == "citus1" ]; then echo "0"; else echo "1"; fi
+  register: w
+
+- name: Createdb for Worker database, if it is not already created
+  command: /home/citus1/citus-tutorial/bin/createdb -p 9701 {{ lookup('env', 'whoami') }}
+  when: w.stdout == "1"
+
+
 
 
 
