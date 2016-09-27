@@ -30,6 +30,12 @@
         owner=citus1
         group=citus1
 
+- name: create a scripts directory if it doesn't exist 
+  file: path=/home/citus1/scripts state=directory
+        mode=0755
+        owner=citus1
+        group=citus1
+
 - name: This is to register existance of the citus-tutorial tar file, else it will help to download the same
   stat: path=/home/citus1/citus-tutorial/citus-tutorial-linux-1.1.0.tar
   register: p
@@ -139,5 +145,11 @@
   command: /home/citus1/citus-tutorial/bin/pg_ctl -D /home/citus1/data/worker -o "-p 9701" -l /home/citus1/data/worker/worker_logfile start
   when: u.stat.exists == False
 
+- name: Copy a local script file onto the VM to use it later
+  copy: src=query_db_version.sh
+        dest=/home/citus1/scripts/
+        mode=751
+        owner=citus1
+        group=citus1
 
 
