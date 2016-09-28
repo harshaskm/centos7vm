@@ -1,0 +1,6 @@
+---
+os_user_for_citus_tutorial: citus1
+citus_master_db_port: 9700
+citus_worker_db_port: 9701
+citus_tutorial_url: https://packages.citusdata.com/tutorials/citus-tutorial-linux-1.1.0.tar.gz
+citus_tutorial_file: citus-tutorial-linux-1.1.0

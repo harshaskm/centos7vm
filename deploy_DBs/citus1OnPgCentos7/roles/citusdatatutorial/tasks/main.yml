@@ -1,7 +1,7 @@
 ---
 
 # To execute this yml file
-#   change directory to centos7vm/deploy_DBs/citus1OnPgCentos7
+#   change directory to centos7vm/deploy_DBs//{{ os_user_for_citus_tutorial }}/OnPgCentos7
 #   and command to execute:
 #     ansible-playbook -i citus1_tutorial_hosts citus1_tutorial_playbook.yml
 
@@ -12,75 +12,63 @@
 #
 # ---~~~~~~*****~~~~~~---
 
-- name: Add alias 'l' to .bash_profile for citus1
-  shell: echo alias l="'ls -ltrh'" >> ~/.bash_profile
+- name: Adding my usual alias shortcuts to .bash_profile of {{ os_user_for_citus_tutorial }} user
+  lineinfile:
+    dest=/home/{{ os_user_for_citus_tutorial }}/.bash_profile
+    line="alias {{item.alias}}='{{item.command}}'"
+  with_items:
+    - {alias: l, command: 'ls -ltrh'}
+    - {alias: eb, command: 'vi ~/.bash_profile'}
 
-- name: Add alias 'eb' to .bash_profile for citus1
-  shell: echo alias eb="'vi ~/.bash_profile'" >> ~/.bash_profile
-
-- name: create a citus-tutorial directory if it doesn't exist 
-  file: path=/home/citus1/citus-tutorial
+- name: Create the required directories in the home folder for user {{ os_user_for_citus_tutorial }}
+  file: path={{ item }}
         state=directory
         mode=0755
-        owner=citus1
-        group=citus1
-
-- name: create a data directory if it doesn't exist 
-  file: path=/home/citus1/data
-        state=directory
-        mode=0755
-        owner=citus1
-        group=citus1
-
-- name: create a scripts directory if it doesn't exist 
-  file: path=/home/citus1/scripts
-        state=directory
-        mode=0755
-        owner=citus1
-        group=citus1
+        owner={{ os_user_for_citus_tutorial }}
+        group={{ os_user_for_citus_tutorial }}
+  with_items:
+    - /home/{{ os_user_for_citus_tutorial }}/'citus-tutorial'
+    - /home/{{ os_user_for_citus_tutorial }}/'data'
+    - /home/{{ os_user_for_citus_tutorial }}/'scripts'
 
 - name: This is to register existance of the citus-tutorial tar file, else it will help to download the same
-  stat: path=/home/citus1/citus-tutorial/citus-tutorial-linux-1.1.0.tar
+  stat: path=/home/{{ os_user_for_citus_tutorial }}/citus-tutorial/{{ citus_tutorial_file }}.tar
   register: p
 
 - name: Download archive 
-  get_url: url=https://packages.citusdata.com/tutorials/citus-tutorial-linux-1.1.0.tar.gz
+  get_url: url={{ citus_tutorial_url }}
         mode=0775
-        owner=citus1
-        dest=/home/citus1/citus-tutorial
+        owner={{ os_user_for_citus_tutorial }}
+        dest=/home/{{ os_user_for_citus_tutorial }}/citus-tutorial
         timeout=10
         force=no
   when: p.stat.exists == False
   tags: downloadcitustutorial
 
-- name: This is to register existance of the citus-tutorial zip file
-  stat: path=/home/citus1/citus-tutorial/citus-tutorial-linux-1.1.0.tar.gz
-  register: q
-
 # Strange thing what I have faced here is, in the previous command get_url, I have used options to set Owner and Group
 #   Yet the next command to gunzip was failing, initially I did not realize the problem, later through option -vvvv
 #   I found that it was complaining about group not being right, here is the exact message:
-#           msg: chgrp failed: failed to look up group citus1
+#           msg: chgrp failed: failed to look up group {{ os_user_for_citus_tutorial }}
 #   So, thats why I have this next few lines to just set the group properly, and then gunzip started working fine.
 #  Supposedly there is a module named 'unarchive' which should download and unarchive on its own, but did not work for me.
 
 - name: Change the file group info for the downloaded gz file
-  file: path=/home/citus1/citus-tutorial/citus-tutorial-linux-1.1.0.tar.gz
-        owner=citus1
-        group=citus1 
-  when: q.stat.exists == True
+  file: path=/home/{{ os_user_for_citus_tutorial }}/citus-tutorial/{{ citus_tutorial_file }}.tar.gz
+        owner={{ os_user_for_citus_tutorial }}
+        group={{ os_user_for_citus_tutorial }} 
+  when: p.stat.exists == False
   tags: changegroupoftutorialfile
 
 - name: Gunzip the tutorial package 
-  command: gunzip -f /home/citus1/citus-tutorial/citus-tutorial-linux-1.1.0.tar.gz
-  when: q.stat.exists == True
+  command: gunzip -f /home/{{ os_user_for_citus_tutorial }}/citus-tutorial/{{ citus_tutorial_file }}.tar.gz
+  when: p.stat.exists == False
 
 - name: Untar the tutorial package 
-  command: tar -xvf /home/citus1/citus-tutorial/citus-tutorial-linux-1.1.0.tar
+  command: tar -xvf /home/{{ os_user_for_citus_tutorial }}/citus-tutorial/{{ citus_tutorial_file }}.tar
   when: p.stat.exists == False
 
 - name: Checking existance of Master database directory
-  stat: path=/home/citus1/data/master
+  stat: path=/home/{{ os_user_for_citus_tutorial }}/data/master
   register: r
 
 # Read in the documentation that initdb would create all the necessary postgres database objects in a template1 form
@@ -88,27 +76,27 @@
 #   The template will have everything that will be created later when you use a 'createdb' command.
 
 - name: initdb for master database  
-  command: /home/citus1/citus-tutorial/bin/initdb -D data/master 
+  command: /home/{{ os_user_for_citus_tutorial }}/citus-tutorial/bin/initdb -D data/master 
   when: r.stat.exists == False
 
 - name: Checking existance of Worker database directory
-  stat: path=/home/citus1/data/worker
+  stat: path=/home/{{ os_user_for_citus_tutorial }}/data/worker
   register: s
 
 - name: initdb for worker database  
-  command: /home/citus1/citus-tutorial/bin/initdb -D data/worker
+  command: /home/{{ os_user_for_citus_tutorial }}/citus-tutorial/bin/initdb -D data/worker
   when: s.stat.exists == False
 
 - name: "The master needs to know where it can find the worker . If this file does not exist create it"
   lineinfile: >
-    dest=/home/citus1/data/master/pg_worker_list.conf
-    line="localhost 9701"
+    dest=/home/{{ os_user_for_citus_tutorial }}/data/master/pg_worker_list.conf
+    line="localhost {{ citus_worker_db_port }}"
     state=present
     create=yes
 
 - name: "Citus is a Postgres extension. To tell Postgres to use this extension, you’ll need to add it to a configuration variable called shared_preload_libraries"
   lineinfile: >
-    dest=/home/citus1/data/master/postgresql.conf
+    dest=/home/{{ os_user_for_citus_tutorial }}/data/master/postgresql.conf
     insertafter='^#shared_preload_libraries'
     line="shared_preload_libraries = 'citus'"
     state=present
@@ -119,7 +107,7 @@
 
 - name: "Citus is a Postgres extension. To tell Postgres to use this extension, you’ll need to add it to a configuration variable called shared_preload_libraries"
   lineinfile: >
-    dest=/home/citus1/data/worker/postgresql.conf
+    dest=/home/{{ os_user_for_citus_tutorial }}/data/worker/postgresql.conf
     insertafter='^#shared_preload_libraries'
     line="shared_preload_libraries = 'citus'"
     state=present
@@ -133,26 +121,26 @@
 #     remember so far I have not run the 'createdb'
 
 - name: Checking existance of Worker database directory
-  stat: path=/home/citus1/data/master/postmaster.pid
+  stat: path=/home/{{ os_user_for_citus_tutorial }}/data/master/postmaster.pid
   register: t
 
 - name: Let’s start the Master database
-  command: /home/citus1/citus-tutorial/bin/pg_ctl -D /home/citus1/data/master -o "-p 9700" -l /home/citus1/data/master/master_logfile start
+  command: /home/{{ os_user_for_citus_tutorial }}/citus-tutorial/bin/pg_ctl -D /home/{{ os_user_for_citus_tutorial }}/data/master -o "-p {{ citus_master_db_port }}" -l /home/{{ os_user_for_citus_tutorial }}/data/master/master_logfile start
   when: t.stat.exists == False
 
 - name: Checking existance of Worker database directory
-  stat: path=/home/citus1/data/worker/postmaster.pid
+  stat: path=/home/{{ os_user_for_citus_tutorial }}/data/worker/postmaster.pid
   register: u
 
 - name: Let’s start the Master database
-  command: /home/citus1/citus-tutorial/bin/pg_ctl -D /home/citus1/data/worker -o "-p 9701" -l /home/citus1/data/worker/worker_logfile start
+  command: /home/{{ os_user_for_citus_tutorial }}/citus-tutorial/bin/pg_ctl -D /home/{{ os_user_for_citus_tutorial }}/data/worker -o "-p {{ citus_worker_db_port }}" -l /home/{{ os_user_for_citus_tutorial }}/data/worker/worker_logfile start
   when: u.stat.exists == False
 
 # Found some very good info on this website: http://stackoverflow.com/questions/14549270/check-if-database-exists-in-postgresql-using-shell
 # In there he explains it very well on how to check programatically if a database exists
-# ~/citus-tutorial/bin/psql -l -p 9700
+# ~/citus-tutorial/bin/psql -l -p {{ citus_master_db_port }}
 #   returns information about the databases on the system
-# ~/citus-tutorial/bin/psql -lt -p 9700
+# ~/citus-tutorial/bin/psql -lt -p {{ citus_master_db_port }}
 #   removes the header
 # The next bit, cut -d \| -f 1 splits the output by the vertical pipe | character (escaped from the shell with a backslash), and selects field 1
 # Now pipe it all to grep for the db name you are looking for
@@ -164,46 +152,51 @@
 # Finally to be able to use it successfully, capture the exit code of the command
 
 - name: Capturing information to find out if Master database is created already
-  shell: chk=`/home/citus1/citus-tutorial/bin/psql -lt -p 9700 | cut -d \| -f 1 | grep "citus1"`; if [ $chk == "citus1" ]; then echo "0"; else echo "1"; fi
+  shell: chk=`/home/{{ os_user_for_citus_tutorial }}/citus-tutorial/bin/psql -lt -p {{ citus_master_db_port }} | cut -d \| -f 1 | grep "{{ os_user_for_citus_tutorial }}"`; if [ $chk == "{{ os_user_for_citus_tutorial }}" ]; then echo "0"; else echo "1"; fi
   register: v
 
 # Following is how we can printout the content of a variable
 #- debug: var=v.stdout
 
 - name: Createdb for Master database, if it is not already created
-  command: /home/citus1/citus-tutorial/bin/createdb -p 9700 {{ lookup('env', 'whoami') }}
+  command: /home/{{ os_user_for_citus_tutorial }}/citus-tutorial/bin/createdb -p {{ citus_master_db_port }} {{ lookup('env', 'whoami') }}
   when: v.stdout == "1"
 
 - name: Capturing information to find out if Worker database is created already
-  shell: chk=`/home/citus1/citus-tutorial/bin/psql -lt -p 9701 | cut -d \| -f 1 | grep "citus1"`; if [ $chk == "citus1" ]; then echo "0"; else echo "1"; fi
+  shell: chk=`/home/{{ os_user_for_citus_tutorial }}/citus-tutorial/bin/psql -lt -p {{ citus_worker_db_port }} | cut -d \| -f 1 | grep "{{ os_user_for_citus_tutorial }}"`; if [ $chk == "{{ os_user_for_citus_tutorial }}" ]; then echo "0"; else echo "1"; fi
   register: w
 
 - name: Createdb for Worker database, if it is not already created
-  command: /home/citus1/citus-tutorial/bin/createdb -p 9701 {{ lookup('env', 'whoami') }}
+  command: /home/{{ os_user_for_citus_tutorial }}/citus-tutorial/bin/createdb -p {{ citus_worker_db_port }} {{ lookup('env', 'whoami') }}
   when: w.stdout == "1"
 
 - name: Copy over the script checkPgCitusExtInstalled.sh onto the vm, will be used in the later tasks
   copy: src=checkPgCitusExtInstalled.sh
-        dest=/home/citus1/scripts
-        owner=citus1
-        group=citus1
+        dest=/home/{{ os_user_for_citus_tutorial }}/scripts
+        owner={{ os_user_for_citus_tutorial }}
+        group={{ os_user_for_citus_tutorial }}
         mode=751
 
 - name: Check to see if citus extension is installed on the Master database
-  command: /home/citus1/scripts/checkPgCitusExtInstalled.sh 9700
+  command: /home/{{ os_user_for_citus_tutorial }}/scripts/checkPgCitusExtInstalled.sh {{ citus_master_db_port }}
   register: x
 
 - name: Install citus extension on the Master database if it is not already installed.
-  command: /home/citus1/citus-tutorial/bin/psql -p 9700 -c "CREATE EXTENSION citus;" 
+  command: /home/{{ os_user_for_citus_tutorial }}/citus-tutorial/bin/psql -p {{ citus_master_db_port }} -c "CREATE EXTENSION citus;" 
   when: x.stdout == "1" 
 
 - name: Check to see if citus extension is installed on the Worker database
-  command: /home/citus1/scripts/checkPgCitusExtInstalled.sh 9701
-  register: x
+  command: /home/{{ os_user_for_citus_tutorial }}/scripts/checkPgCitusExtInstalled.sh {{ citus_worker_db_port }}
+  register: y
+
+# Just want to make a note here that, to test the execution of this next task of creating extension
+#   I manually dropped the created extension to check if the When clause works as expected.
+#   The command was:
+#       /home/{{ os_user_for_citus_tutorial }}/citus-tutorial/bin/psql -t -p {{ citus_master_db_port }} -c "drop extension citus"
 
 - name: Install citus extension on the Worker database if it is not already installed.
-  command: /home/citus1/citus-tutorial/bin/psql -p 9701 -c "CREATE EXTENSION citus;" 
-  when: x.stdout == "1" 
+  command: /home/{{ os_user_for_citus_tutorial }}/citus-tutorial/bin/psql -p {{ citus_worker_db_port }} -c "CREATE EXTENSION citus;" 
+  when: y.stdout == "1" 
 
 
 
