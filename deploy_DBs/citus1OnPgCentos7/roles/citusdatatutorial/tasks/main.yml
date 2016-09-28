@@ -170,14 +170,17 @@
   command: /home/{{ os_user_for_citus_tutorial }}/citus-tutorial/bin/createdb -p {{ citus_worker_db_port }} {{ lookup('env', 'whoami') }}
   when: w.stdout == "1"
 
-- name: Copy over the script checkPgCitusExtInstalled.sh onto the vm, will be used in the later tasks
-  copy: src=checkPgCitusExtInstalled.sh
+- name: Copy over the scripts onto the vm, for later use
+  copy: src={{ item }}
         dest=/home/{{ os_user_for_citus_tutorial }}/scripts
         owner={{ os_user_for_citus_tutorial }}
         group={{ os_user_for_citus_tutorial }}
-        mode=751
+        mode=750
+  with_items:
+    - checkPgCitusExtInstalled.sh
+    - create2wikipediaTbls.sql
 
-- name: Check to see if citus extension is installed on the Master database
+- name: "Check to see if citus extension is installed on the Master database"
   command: /home/{{ os_user_for_citus_tutorial }}/scripts/checkPgCitusExtInstalled.sh {{ citus_master_db_port }}
   register: x
 
@@ -198,9 +201,14 @@
   command: /home/{{ os_user_for_citus_tutorial }}/citus-tutorial/bin/psql -p {{ citus_worker_db_port }} -c "CREATE EXTENSION citus;" 
   when: y.stdout == "1" 
 
+- name: As part of the tutorial, we will be creating 2 new tables, before that, let us check if they already exist
+  shell: /home/{{ os_user_for_citus_tutorial }}/citus-tutorial/bin/psql -t -p 9700 -c "select count(*) from information_schema.tables where table_name = 'wikipedia_editors'"
+  register: z
 
+#- debug: var=z.stdout
 
-
-
+- name: Create the 2 tables based on the check performed above
+  command: /home/{{ os_user_for_citus_tutorial }}/citus-tutorial/bin/psql -p 9700 -f /home/{{ os_user_for_citus_tutorial }}/scripts/create2wikipediaTbls.sql
+  when: z.stdout == "0"
 
 
