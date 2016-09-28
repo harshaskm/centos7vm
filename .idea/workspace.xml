@@ -2,11 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6f379e9c-773f-4ac2-8f81-d0598511fc29" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.vagrant/machines/citus1OnPgCentos7/virtualbox/action_provision" afterPath="$PROJECT_DIR$/.vagrant/machines/citus1OnPgCentos7/virtualbox/action_provision" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.vagrant/machines/citus1OnPgCentos7/virtualbox/action_set_name" afterPath="$PROJECT_DIR$/.vagrant/machines/citus1OnPgCentos7/virtualbox/action_set_name" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.vagrant/machines/citus1OnPgCentos7/virtualbox/id" afterPath="$PROJECT_DIR$/.vagrant/machines/citus1OnPgCentos7/virtualbox/id" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.vagrant/machines/citus1OnPgCentos7/virtualbox/index_uuid" afterPath="$PROJECT_DIR$/.vagrant/machines/citus1OnPgCentos7/virtualbox/index_uuid" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deploy_DBs/citus1OnPgCentos7/roles/citusdatatutorial/tasks/main.yml" afterPath="$PROJECT_DIR$/deploy_DBs/citus1OnPgCentos7/roles/citusdatatutorial/tasks/main.yml" />
     </list>
     <ignored path="centos7vm.iws" />
@@ -31,8 +26,8 @@
       <file leaf-file-name="main.yml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/deploy_DBs/citus1OnPgCentos7/roles/citusdatatutorial/tasks/main.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="547">
-              <caret line="181" column="0" selection-start-line="181" selection-start-column="0" selection-end-line="181" selection-end-column="0" />
+            <state relative-caret-position="52">
+              <caret line="170" column="1" selection-start-line="170" selection-start-column="1" selection-end-line="170" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -284,6 +279,32 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="centos7vm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="centos7vm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="deploy_DBs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="citus1OnPgCentos7" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="roles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="citusdatatutorial" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
@@ -414,12 +435,12 @@
       <workItem from="1474555610546" duration="1809000" />
       <workItem from="1474614965592" duration="18043000" />
       <workItem from="1474816189044" duration="2485000" />
-      <workItem from="1474847266999" duration="20283000" />
+      <workItem from="1474847266999" duration="23146000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="84818000" />
+    <option name="totallyTimeSpent" value="87681000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -813,8 +834,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/deploy_DBs/citus1OnPgCentos7/roles/citusdatatutorial/tasks/main.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
-          <caret line="181" column="0" selection-start-line="181" selection-start-column="0" selection-end-line="181" selection-end-column="0" />
+        <state relative-caret-position="52">
+          <caret line="170" column="1" selection-start-line="170" selection-start-column="1" selection-end-line="170" selection-end-column="1" />
           <folding />
         </state>
       </provider>

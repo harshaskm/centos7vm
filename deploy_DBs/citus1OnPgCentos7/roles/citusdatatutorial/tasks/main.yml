@@ -19,19 +19,22 @@
   shell: echo alias eb="'vi ~/.bash_profile'" >> ~/.bash_profile
 
 - name: create a citus-tutorial directory if it doesn't exist 
-  file: path=/home/citus1/citus-tutorial state=directory
+  file: path=/home/citus1/citus-tutorial
+        state=directory
         mode=0755
         owner=citus1
         group=citus1
 
 - name: create a data directory if it doesn't exist 
-  file: path=/home/citus1/data state=directory
+  file: path=/home/citus1/data
+        state=directory
         mode=0755
         owner=citus1
         group=citus1
 
 - name: create a scripts directory if it doesn't exist 
-  file: path=/home/citus1/scripts state=directory
+  file: path=/home/citus1/scripts
+        state=directory
         mode=0755
         owner=citus1
         group=citus1
@@ -161,7 +164,7 @@
 # Finally to be able to use it successfully, capture the exit code of the command
 
 - name: Capturing information to find out if Master database is created already
-  shell: chk=`~/citus-tutorial/bin/psql -lt -p 9700 | cut -d \| -f 1 | grep "citus1"`; if [ $chk == "citus1" ]; then echo "0"; else echo "1"; fi
+  shell: chk=`/home/citus1/citus-tutorial/bin/psql -lt -p 9700 | cut -d \| -f 1 | grep "citus1"`; if [ $chk == "citus1" ]; then echo "0"; else echo "1"; fi
   register: v
 
 # Following is how we can printout the content of a variable
@@ -172,12 +175,37 @@
   when: v.stdout == "1"
 
 - name: Capturing information to find out if Worker database is created already
-  shell: chk=`~/citus-tutorial/bin/psql -lt -p 9701 | cut -d \| -f 1 | grep "citus1"`; if [ $chk == "citus1" ]; then echo "0"; else echo "1"; fi
+  shell: chk=`/home/citus1/citus-tutorial/bin/psql -lt -p 9701 | cut -d \| -f 1 | grep "citus1"`; if [ $chk == "citus1" ]; then echo "0"; else echo "1"; fi
   register: w
 
 - name: Createdb for Worker database, if it is not already created
   command: /home/citus1/citus-tutorial/bin/createdb -p 9701 {{ lookup('env', 'whoami') }}
   when: w.stdout == "1"
+
+- name: Copy over the script checkPgCitusExtInstalled.sh onto the vm, will be used in the later tasks
+  copy: src=checkPgCitusExtInstalled.sh
+        dest=/home/citus1/scripts
+        owner=citus1
+        group=citus1
+        mode=751
+
+- name: Check to see if citus extension is installed on the Master database
+  command: /home/citus1/scripts/checkPgCitusExtInstalled.sh 9700
+  register: x
+
+- name: Install citus extension on the Master database if it is not already installed.
+  command: /home/citus1/citus-tutorial/bin/psql -p 9700 -c "CREATE EXTENSION citus;" 
+  when: x.stdout == "1" 
+
+- name: Check to see if citus extension is installed on the Worker database
+  command: /home/citus1/scripts/checkPgCitusExtInstalled.sh 9701
+  register: x
+
+- name: Install citus extension on the Worker database if it is not already installed.
+  command: /home/citus1/citus-tutorial/bin/psql -p 9701 -c "CREATE EXTENSION citus;" 
+  when: x.stdout == "1" 
+
+
 
 
 
