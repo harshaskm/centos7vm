@@ -8,7 +8,8 @@ CREATE TABLE wikipedia_editors (
 
   first_seen TIMESTAMPTZ, -- The time we first saw them edit
   last_seen TIMESTAMPTZ -- The time we last saw them edit
-);
+)
+;
 
 CREATE TABLE wikipedia_changes (
   editor TEXT, -- The editor who made the change
@@ -23,4 +24,29 @@ CREATE TABLE wikipedia_changes (
 
   old_length INT, -- how long the page used to be
   new_length INT -- how long the page is as of this edit
-);
+)
+;
+
+
+--These tables are regular Postgres tables. We need to tell Citus that they should be distributed tables, stored across the cluster.
+SELECT master_create_distributed_table(
+    'wikipedia_changes', 'editor', 'hash'
+  )
+;
+
+SELECT master_create_distributed_table(
+    'wikipedia_editors', 'editor', 'hash'
+  )
+;
+
+
+--These say to store each table as a collection of shards, each responsible for holding a different subset of the data.
+--  The shard a particular row belongs in will be computed by hashing the editor column.
+-- Create the shards:
+
+SELECT master_create_worker_shards('wikipedia_editors', 16, 1)
+;
+SELECT master_create_worker_shards('wikipedia_changes', 16, 1)
+;
+
+

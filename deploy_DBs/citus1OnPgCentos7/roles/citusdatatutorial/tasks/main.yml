@@ -211,4 +211,7 @@
   command: /home/{{ os_user_for_citus_tutorial }}/citus-tutorial/bin/psql -p 9700 -f /home/{{ os_user_for_citus_tutorial }}/scripts/create2wikipediaTbls.sql
   when: z.stdout == "0"
 
+- name: Run the data ingest script, provided by citusdata, this collects information at runtime from wikipedia of the ongoing edits
+  command: /home/{{ os_user_for_citus_tutorial }}/citus-tutorial/bin/psql -p 9700 -f /home/{{ os_user_for_citus_tutorial }}/citus-tutorial/scripts/collect-wikipedia-user-data
+  when: z.stdout == "1"
 
