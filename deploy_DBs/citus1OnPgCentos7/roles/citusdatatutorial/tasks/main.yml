@@ -205,13 +205,30 @@
   shell: /home/{{ os_user_for_citus_tutorial }}/citus-tutorial/bin/psql -t -p 9700 -c "select count(*) from information_schema.tables where table_name = 'wikipedia_editors'"
   register: z
 
-#- debug: var=z.stdout
+- debug: var=z.stdout
 
 - name: Create the 2 tables based on the check performed above
   command: /home/{{ os_user_for_citus_tutorial }}/citus-tutorial/bin/psql -p 9700 -f /home/{{ os_user_for_citus_tutorial }}/scripts/create2wikipediaTbls.sql
-  when: z.stdout == "0"
+  when: z.stdout == "     0"
+
+- name: As part of the tutorial, we will be creating 2 new tables, before that, let us check if they already exist
+  shell: /home/{{ os_user_for_citus_tutorial }}/citus-tutorial/bin/psql -t -p 9700 -c "select count(*) from information_schema.tables where table_name = 'wikipedia_editors'"
+  register: z
 
 - name: Run the data ingest script, provided by citusdata, this collects information at runtime from wikipedia of the ongoing edits
-  command: /home/{{ os_user_for_citus_tutorial }}/citus-tutorial/bin/psql -p 9700 -f /home/{{ os_user_for_citus_tutorial }}/citus-tutorial/scripts/collect-wikipedia-user-data
-  when: z.stdout == "1"
+  command: timeout 20s scripts/collect-wikipedia-user-data postgresql://:9700
+  register: a
+#  until: a.stdout.find("Exception ignored in: <bound method SocketIO") = -1
+  until: not a.stdout | search('Exception ignored in{{':'}} <bound method SocketIO')
+  retries: 3
+  delay: 5
+  when: z.stdout == "     1"
+  args:
+    chdir: /home/{{ os_user_for_citus_tutorial }}/citus-tutorial
+# Ignoring errors from this command because when the timeout executes and kills the task, it throws a error
+# So, even if the task itself was successfull in fetching right information into the said tables, just because timeout kills the task,
+# It gets flagged as a failure by Ansible
+  ignore_errors: yes
+
+
 
