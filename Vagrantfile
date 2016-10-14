@@ -57,6 +57,7 @@ Vagrant.configure(2) do |config|
     gocdOnCentos7.vm.provision :shell, inline: "systemctl enable firewalld"
     gocdOnCentos7.vm.provision :shell, inline: "systemctl start firewalld"
     gocdOnCentos7.vm.provider "virtualbox" do |v|
+    gocdOnCentos7.vm.synced_folder ".", "/vagrant", type: "rsync"
       v.gui = false
       memory = "1024"
       v.name = "gocdOnCentos7"

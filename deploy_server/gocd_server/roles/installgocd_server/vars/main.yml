@@ -1,0 +1,5 @@
+---
+os_user_for_gocd_server: gocd_server
+gocd_server_url: https://download.go.cd/binaries/16.10.0-4131/rpm/go-server-16.10.0-4131.noarch.rpm
+gocd_server_file: go-server-16.10.0-4131.noarch.rpm
+

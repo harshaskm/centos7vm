@@ -8,4 +8,4 @@
     - vars/main.yml
 
   roles:
-  - installgocd_server
+  - preparegocd_server

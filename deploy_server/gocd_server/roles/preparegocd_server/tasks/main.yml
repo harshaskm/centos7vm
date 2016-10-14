@@ -20,6 +20,3 @@
   authorized_key: user={{ os_user_for_gocd_server }} key=https://raw.githubusercontent.com/harshaskm/centos7vm/master/filesForVMs/put_into_citus1vm_auth_key
 
 
-
-
-
