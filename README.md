@@ -6,6 +6,7 @@ This is an effort to have an automated way of downloading, installing and config
 
 ## Getting Started
   Once you have the repo cloned, you could do the following to get yourself a working vm with an open source database installed, for ex:
+
     cd centos7vm
     ./server.sh build postgresql
 
