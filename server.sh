@@ -26,19 +26,15 @@
 
     case "$TEMPSTR2" in
       postgresql)
-        echo "  postgresql vm will be rebuilt"
         VMNAME="postgresqlOnCentos7"
         ;;
       mysql)
-        echo "  Mysql vm will be rebuilt"
         VMNAME="mysqlOnCentos7"
         ;;
       citusdata)
-        echo "  Mysql vm will be rebuilt"
         VMNAME="citus1OnPgCentos7"
         ;;
       gocd_server)
-        echo "  GoCD Server vm will be rebuilt"
         VMNAME="gocdOnCentos7"
         ;;
       *)
@@ -49,29 +45,31 @@
     if [ "$TEMPSTR1" == "rebuild" ]; then
       # Destroy and rebuild the vm as per the parameter passed
         time vagrant destroy -f $VMNAME
-        time vagrant up $VMNAME
     fi
   fi
 
+  # In case the VM is currently shutdown, this next line will try to bring it up before executing the Ansible Playbooks
+      time vagrant up $VMNAME
+
   # Executing the yml files to download, install and configure the selected server
-  TEMPSTR1=$3;
-  if [ "$TEMPSTR3" == "v" ]; then
-    TEMPSTR3 = "-vvvv";
-  fi
-    cd /Users/hmohan/centos7vm/deploy_server/$VMNAME
-    export ANSIBLE_HOST_KEY_CHECKING=False
-    if [ "$TEMPSTR2" == "postgresql" ]; then
-      time ansible-playbook -i postgresql_ansible_hosts postgresql_playbook.yml $TEMPSTR3
-    fi
-    if [ "$TEMPSTR2" == "mysql" ]; then
-      time ansible-playbook -i mysql_ansible_hosts mysql_playbook.yml $TEMPSTR3
-    fi
-    if [ "$TEMPSTR2" == "citusdata" ]; then
-      time ansible-playbook -i citus1_ansible_hosts citus1_playbook.yml
-      time ansible-playbook -i citus1_tutorial_hosts citus1_tutorial_playbook.yml $TEMPSTR3
-    fi
-    if [ "$TEMPSTR2" == "gocd_server" ]; then
-      time ansible-playbook -i preparegocd_ansible_hosts preparegocd_playbook.yml $TEMPSTR3
-      time ansible-playbook -i installgocd_ansible_hosts installgocd_playbook.yml $TEMPSTR3
-    fi
+      TEMPSTR1=$3;
+      if [ "$TEMPSTR3" == "v" ]; then
+        TEMPSTR3 = "-vvvv";
+      fi
+        cd /Users/hmohan/centos7vm/deploy_server/$VMNAME
+        export ANSIBLE_HOST_KEY_CHECKING=False
+        if [ "$TEMPSTR2" == "postgresql" ]; then
+          time ansible-playbook -i postgresql_ansible_hosts postgresql_playbook.yml $TEMPSTR3
+        fi
+        if [ "$TEMPSTR2" == "mysql" ]; then
+          time ansible-playbook -i mysql_ansible_hosts mysql_playbook.yml $TEMPSTR3
+        fi
+        if [ "$TEMPSTR2" == "citusdata" ]; then
+          time ansible-playbook -i citus1_ansible_hosts citus1_playbook.yml
+          time ansible-playbook -i citus1_tutorial_hosts citus1_tutorial_playbook.yml $TEMPSTR3
+        fi
+        if [ "$TEMPSTR2" == "gocd_server" ]; then
+          time ansible-playbook -i preparegocd_ansible_hosts preparegocd_playbook.yml $TEMPSTR3
+          time ansible-playbook -i installgocd_ansible_hosts installgocd_playbook.yml $TEMPSTR3
+        fi
 
