@@ -21,7 +21,7 @@ This is an effort to have an automated way of downloading, installing and config
 
 ## Authors
 
-* **Harsha ** - *Initial work* - [PurpleBooth](https://github.com/harshaskm)
+* **Harsha ** - (https://github.com/harshaskm)
 
 ## Acknowledgments
 
