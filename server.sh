@@ -55,7 +55,7 @@
       if [ "$3" == "v" ]; then
         TEMPSTR3="-vvvv"
       fi
-        cd /Users/hmohan/centos7vm/deploy_server/$VMNAME
+        cd ~/centos7vm/deploy_server/$VMNAME
         export ANSIBLE_HOST_KEY_CHECKING=False
         if [ "$TEMPSTR2" == "postgresql" ]; then
           time ansible-playbook -i postgresql_ansible_hosts postgresql_playbook.yml $TEMPSTR3

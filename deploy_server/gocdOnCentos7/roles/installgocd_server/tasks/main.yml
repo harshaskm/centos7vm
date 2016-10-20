@@ -1,9 +1,11 @@
 ---
-- name: Ensure bash, OpenSSL, and libssl are the latest versions
+- name: Ensure bash, OpenSSL are the latest versions
   yum: name={{ item }} update_cache=true state=latest
   with_items:
     - bash
     - openssl
+    - policycoreutils-python
+    - elinks
   tags: packages
 
 - name: Copy over the scripts onto the vm, for later use
@@ -19,7 +21,29 @@
 - name: Install GoCD server
   command: sudo ./gocd_server_installer.sh
 
+- name: Add firewall exception for GoCD server ports
+  command: firewall-cmd --zone=public --add-port={{ item }}/tcp --permanent
+  with_items:
+    - "{{ gocd_server_listen_port1 }}"
+    - "{{ gocd_server_listen_port2 }}"
 
+- name: Firewall deamon needs a restart for the above change to reflect
+  command: firewall-cmd --reload
 
+#- name: Adding exception for gocd port 8153 to selinux through semanage
+#  seport: ports={{ item }} proto=tcp setype=http_port_t state=present
+#  with_items:
+#    - "{{ gocd_server_listen_port1 }}"
+#    - "{{ gocd_server_listen_port2 }}"
+
+#iptables -A INPUT -p tcp -m tcp --dport 8153 -j ACCEPT
+#iptables -A INPUT -p tcp -m tcp --dport 8154 -j ACCEPT
+#
+# To check the same:
+#
+# iptables -S | grep -E "(8153|8154)"
+#
+# This is to check to see if the semanage exception port command was successful:
+# semanage port -l | grep -E "(8153|8154)"
 
 

@@ -1,5 +1,5 @@
 ---
-- name: Create a PostgreSQL DB server
+- name: Create a GoCD server
   hosts: gocd_server
   sudo: yes
   sudo_user: root

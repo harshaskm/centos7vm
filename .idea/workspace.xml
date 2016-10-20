@@ -2,26 +2,36 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6f379e9c-773f-4ac2-8f81-d0598511fc29" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/gocd_server/.ansible.cfg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/gocd_server/installgocd_ansible_hosts" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/gocd_server/installgocd_playbook.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/gocd_server/preparegocd_ansible_hosts" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/gocd_server/preparegocd_playbook.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/gocd_server/roles/installgocd_server/tasks/main.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/gocd_server/roles/installgocd_server/vars/main.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/gocd_server/roles/preparegocd_server/tasks/main.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/gocd_server/roles/preparegocd_server/vars/main.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/gocd_server/scripts/destroy_gocdOnPgCentos7.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/gocd_server/vars/main.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.vagrant/machines/citus1OnPgCentos7/virtualbox/action_provision" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.vagrant/machines/citus1OnPgCentos7/virtualbox/action_set_name" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.vagrant/machines/citus1OnPgCentos7/virtualbox/creator_uid" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.vagrant/machines/citus1OnPgCentos7/virtualbox/id" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.vagrant/machines/citus1OnPgCentos7/virtualbox/index_uuid" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.vagrant/machines/citus1OnPgCentos7/virtualbox/synced_folders" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.vagrant/machines/mysqlOnCentos7/virtualbox/action_provision" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.vagrant/machines/mysqlOnCentos7/virtualbox/action_set_name" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.vagrant/machines/mysqlOnCentos7/virtualbox/creator_uid" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.vagrant/machines/mysqlOnCentos7/virtualbox/id" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.vagrant/machines/mysqlOnCentos7/virtualbox/index_uuid" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.vagrant/machines/mysqlOnCentos7/virtualbox/synced_folders" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.vagrant/machines/postgresqlOnCentos7/virtualbox/action_provision" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.vagrant/machines/postgresqlOnCentos7/virtualbox/action_set_name" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.vagrant/machines/postgresqlOnCentos7/virtualbox/creator_uid" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.vagrant/machines/postgresqlOnCentos7/virtualbox/id" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.vagrant/machines/postgresqlOnCentos7/virtualbox/index_uuid" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.vagrant/machines/postgresqlOnCentos7/virtualbox/synced_folders" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/gocdOnCentos7/v" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.vagrant/machines/gocdOnCentos7/virtualbox/action_provision" afterPath="$PROJECT_DIR$/.vagrant/machines/gocdOnCentos7/virtualbox/action_provision" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.vagrant/machines/gocdOnCentos7/virtualbox/action_set_name" afterPath="$PROJECT_DIR$/.vagrant/machines/gocdOnCentos7/virtualbox/action_set_name" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.vagrant/machines/gocdOnCentos7/virtualbox/id" afterPath="$PROJECT_DIR$/.vagrant/machines/gocdOnCentos7/virtualbox/id" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.vagrant/machines/gocdOnCentos7/virtualbox/index_uuid" afterPath="$PROJECT_DIR$/.vagrant/machines/gocdOnCentos7/virtualbox/index_uuid" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.vagrant/machines/postgresqlOnCentos7/virtualbox/action_provision" afterPath="$PROJECT_DIR$/.vagrant/machines/postgresqlOnCentos7/virtualbox/action_provision" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.vagrant/machines/postgresqlOnCentos7/virtualbox/action_set_name" afterPath="$PROJECT_DIR$/.vagrant/machines/postgresqlOnCentos7/virtualbox/action_set_name" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.vagrant/machines/postgresqlOnCentos7/virtualbox/id" afterPath="$PROJECT_DIR$/.vagrant/machines/postgresqlOnCentos7/virtualbox/id" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.vagrant/machines/postgresqlOnCentos7/virtualbox/index_uuid" afterPath="$PROJECT_DIR$/.vagrant/machines/postgresqlOnCentos7/virtualbox/index_uuid" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.vagrant/machines/gocdOnCentos7/virtualbox/synced_folders" afterPath="$PROJECT_DIR$/.vagrant/machines/gocdOnCentos7/virtualbox/synced_folders" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Vagrantfile" afterPath="$PROJECT_DIR$/Vagrantfile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deploy_server/gocdOnCentos7/installgocd_ansible_hosts" afterPath="$PROJECT_DIR$/deploy_server/gocdOnCentos7/installgocd_ansible_hosts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deploy_server/gocdOnCentos7/installgocd_playbook.yml" afterPath="$PROJECT_DIR$/deploy_server/gocdOnCentos7/installgocd_playbook.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deploy_server/gocdOnCentos7/roles/installgocd_server/tasks/main.yml" afterPath="$PROJECT_DIR$/deploy_server/gocdOnCentos7/roles/installgocd_server/tasks/main.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deploy_server/gocdOnCentos7/roles/installgocd_server/vars/main.yml" afterPath="$PROJECT_DIR$/deploy_server/gocdOnCentos7/roles/installgocd_server/vars/main.yml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.sh" afterPath="$PROJECT_DIR$/server.sh" />
     </list>
     <ignored path="centos7vm.iws" />
@@ -43,21 +53,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.yml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.yml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/deploy_server/gocdOnCentos7/roles/installgocd_server/tasks/main.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Vagrantfile" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Vagrantfile">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="372">
-              <caret line="52" column="18" selection-start-line="52" selection-start-column="18" selection-end-line="52" selection-end-column="69" />
+            <state relative-caret-position="450">
+              <caret line="30" column="32" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -66,8 +66,8 @@
       <file leaf-file-name="installgocd_playbook.yml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/deploy_server/gocdOnCentos7/installgocd_playbook.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="15">
+              <caret line="1" column="22" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -95,7 +95,6 @@
         <option value="$PROJECT_DIR$/deploy_DBs/citus1OnPgCentos7/vars/main.yml" />
         <option value="$PROJECT_DIR$/deploy_DBs/citus1OnPgCentos7/roles/citusdatatutorial/vars/main.yml" />
         <option value="$PROJECT_DIR$/deploy_DBs/citus1OnPgCentos7/roles/citusdatatutorial/tasks/main.yml" />
-        <option value="$PROJECT_DIR$/Vagrantfile" />
         <option value="$PROJECT_DIR$/deploy_gocd/gocd/roles/gocd/tasks/main.yml" />
         <option value="$PROJECT_DIR$/deploy_gocd/exec_yml.sh" />
         <option value="$PROJECT_DIR$/deploy_gocd/roles/installgocd_server/vars/main.yml" />
@@ -106,6 +105,9 @@
         <option value="$PROJECT_DIR$/deploy_gocd/roles/installgocd_server/tasks/main.yml" />
         <option value="$PROJECT_DIR$/deploy_server/gocd_server/roles/preparegocd_server/tasks/main.yml" />
         <option value="$PROJECT_DIR$/deploy_server/gocd_server/roles/installgocd_server/tasks/main.yml" />
+        <option value="$PROJECT_DIR$/deploy_server/gocdOnCentos7/installgocd_playbook.yml" />
+        <option value="$PROJECT_DIR$/deploy_server/gocdOnCentos7/roles/installgocd_server/vars/main.yml" />
+        <option value="$PROJECT_DIR$/Vagrantfile" />
         <option value="$PROJECT_DIR$/deploy_server/gocdOnCentos7/roles/installgocd_server/tasks/main.yml" />
       </list>
     </option>
@@ -146,7 +148,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -197,64 +198,9 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="centos7vm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="centos7vm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="deploy_server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gocdOnCentos7" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="roles" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="installgocd_server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="centos7vm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="centos7vm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="deploy_server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gocdOnCentos7" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="roles" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="installgocd_server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tasks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -428,11 +374,13 @@
       <workItem from="1476478417507" duration="654000" />
       <workItem from="1476563497664" duration="316000" />
       <workItem from="1476617435215" duration="1864000" />
+      <workItem from="1476929173230" duration="507000" />
+      <workItem from="1476934245389" duration="3834000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="115327000" />
+    <option name="totallyTimeSpent" value="119668000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -482,7 +430,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/deploy_DBs/postgresqlDB/roles/createdb/handlers/main.yml" />
     <entry file="file://$PROJECT_DIR$/deploy_DBs/postgresqlDB/roles/createdb/tasks/main.yml" />
     <entry file="file://$PROJECT_DIR$/deploy_DBs/postgresqlDB/postgresql_playbook.yml" />
     <entry file="file://$PROJECT_DIR$/Vagrantfile">
@@ -564,20 +511,8 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/deploy_server/gocd_server/roles/preparegocd_server/tasks/main.yml" />
-    <entry file="file://$PROJECT_DIR$/deploy_server/gocd_server/installgocd_ansible_hosts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deploy_server/gocd_server/installgocd_playbook.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/deploy_server/gocd_server/installgocd_ansible_hosts" />
+    <entry file="file://$PROJECT_DIR$/deploy_server/gocd_server/installgocd_playbook.yml" />
     <entry file="file://$PROJECT_DIR$/deploy_server/mysqlOnCentos7/vars/main.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -592,58 +527,51 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/deploy_server/gocd_server/roles/installgocd_server/vars/main.yml">
+    <entry file="file://$PROJECT_DIR$/deploy_server/gocd_server/roles/installgocd_server/vars/main.yml" />
+    <entry file="file://$PROJECT_DIR$/deploy_server/gocd_server/roles/installgocd_server/tasks/main.yml" />
+    <entry file="file://$PROJECT_DIR$/deploy_server/citus1OnPgCentos7/citus1_playbook.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deploy_server/gocd_server/roles/installgocd_server/tasks/main.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/deploy_server/citus1OnPgCentos7/roles/citusdatatutorial/tasks/main.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+        <state relative-caret-position="510">
+          <caret line="226" column="0" selection-start-line="226" selection-start-column="0" selection-end-line="226" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/deploy_server/citus1OnPgCentos7/citus1_playbook.yml">
+    <entry file="file://$PROJECT_DIR$/deploy_server/gocdOnCentos7/roles/installgocd_server/vars/main.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="60">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/deploy_server/gocdOnCentos7/installgocd_playbook.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deploy_server/gocdOnCentos7/roles/installgocd_server/tasks/main.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        <state relative-caret-position="15">
+          <caret line="1" column="22" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Vagrantfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="52" column="18" selection-start-line="52" selection-start-column="18" selection-end-line="52" selection-end-column="69" />
+        <state relative-caret-position="522">
+          <caret line="64" column="7" selection-start-line="64" selection-start-column="7" selection-end-line="64" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deploy_server/gocdOnCentos7/roles/installgocd_server/tasks/main.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" column="32" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
           <folding />
         </state>
       </provider>
