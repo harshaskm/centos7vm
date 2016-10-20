@@ -1,0 +1,7 @@
+---
+- name: Create a password file to be able to access goserver securely
+#  command: python -c "import sha;from base64 import b64encode;print b64encode(sha.new('{{ goserver_admin_username:goserver_admin_password}}').digest())" > ~/gocd_admin_sha_passwordfile
+  command: python -c "import sha;from base64 import b64encode;print b64encode(sha.new('adsf:asdf').digest())" > ~/gocd_admin_sha_passwordfile
+
+
+
