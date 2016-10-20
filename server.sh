@@ -52,9 +52,8 @@
       time vagrant up $VMNAME
 
   # Executing the yml files to download, install and configure the selected server
-      TEMPSTR1=$3;
-      if [ "$TEMPSTR3" == "v" ]; then
-        TEMPSTR3 = "-vvvv";
+      if [ "$3" == "v" ]; then
+        TEMPSTR3="-vvvv"
       fi
         cd /Users/hmohan/centos7vm/deploy_server/$VMNAME
         export ANSIBLE_HOST_KEY_CHECKING=False
@@ -69,7 +68,6 @@
           time ansible-playbook -i citus1_tutorial_hosts citus1_tutorial_playbook.yml $TEMPSTR3
         fi
         if [ "$TEMPSTR2" == "gocd_server" ]; then
-          time ansible-playbook -i preparegocd_ansible_hosts preparegocd_playbook.yml $TEMPSTR3
           time ansible-playbook -i installgocd_ansible_hosts installgocd_playbook.yml $TEMPSTR3
         fi
 

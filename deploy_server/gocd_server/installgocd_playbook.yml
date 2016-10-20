@@ -1,7 +1,0 @@
----
-- name: Install gocd_server on the box
-  hosts: gocd_server
-
-  roles:
-  - installgocd_server
-
