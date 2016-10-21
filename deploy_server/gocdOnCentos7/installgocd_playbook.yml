@@ -9,4 +9,3 @@
 
   roles:
   - installgocd_server
-  - preparegocd_server

@@ -53,7 +53,8 @@
 
   # Executing the yml files to download, install and configure the selected server
       if [ "$3" == "v" ]; then
-        TEMPSTR3="-vvvv"
+        #TEMPSTR3="-vvvv"
+        TEMPSTR3="-vvv"
       fi
         cd ~/centos7vm/deploy_server/$VMNAME
         export ANSIBLE_HOST_KEY_CHECKING=False
@@ -68,6 +69,8 @@
           time ansible-playbook -i citus1_tutorial_hosts citus1_tutorial_playbook.yml $TEMPSTR3
         fi
         if [ "$TEMPSTR2" == "gocd_server" ]; then
+	  sleep 3
           time ansible-playbook -i installgocd_ansible_hosts installgocd_playbook.yml $TEMPSTR3
+          time ansible-playbook -i preparegocd_ansible_hosts preparegocd_playbook.yml $TEMPSTR3
         fi
 

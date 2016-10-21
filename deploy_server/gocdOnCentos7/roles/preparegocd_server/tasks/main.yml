@@ -1,7 +1,28 @@
 ---
-- name: Create a password file to be able to access goserver securely
-#  command: python -c "import sha;from base64 import b64encode;print b64encode(sha.new('{{ goserver_admin_username:goserver_admin_password}}').digest())" > ~/gocd_admin_sha_passwordfile
-  command: python -c "import sha;from base64 import b64encode;print b64encode(sha.new('adsf:asdf').digest())" > ~/gocd_admin_sha_passwordfile
+- name: Adding my usual alias shortcuts to .bash_profile of {{ os_user_for_gocd_server }} user
+  lineinfile:
+    #any spaces around the equals sign while mentioning "dest" fails.
+    dest=/home/{{ os_user_for_gocd_server }}/.bash_profile
+    line="alias {{item.alias}}='{{item.command}}'"
+  with_items:
+    - {alias: l, command: 'ls -ltrh'}
+    - {alias: eb, command: 'vi ~/.bash_profile'}
+
+- name: Generate passwordfile required for goserver access
+  shell: echo "admin:`python -c "import base64;import hashlib; print base64.b64encode(hashlib.sha1('{{ goserver_admin_password }}').digest())"`" > {{ gocd_admin_sha_passwordfile }}
+
+- name: Insert the sha1 file name into the cruise-config.xml
+  lineinfile:
+    dest={{ gocd_cruise_config_location }}
+    line='{{ item }}'
+    insertbefore="</cruise>"
+  with_items:
+    - '     <security>'
+    - '       <passwordFile path="{{ gocd_admin_sha_passwordfile }}" />'
+    - '     </security>'
+    - '  </server>'
+
+
 
 
 
