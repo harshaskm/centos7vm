@@ -1,11 +1,9 @@
 ---
 - name: Ensure bash, OpenSSL, and libssl are the latest versions
-  yum: name={{ item }} update_cache=true state=latest
+  yum: name={{ item }} state=present
   with_items:
     - bash
     - openssl
-#    - libssl-dev
-#    - libssl-doc
   tags: packages
 
 - name: Download yum repo rpm for MySql (for version 5.7)
