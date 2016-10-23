@@ -49,7 +49,7 @@ Vagrant.configure(2) do |config|
   config.vm.define "gocdOnCentos7" do |gocdOnCentos7|
     gocdOnCentos7.vm.box = "centos/7"
     gocdOnCentos7.ssh.insert_key = false
-    gocdOnCentos7.vm.network :forwarded_port, host: 27020, guest: 22
+    gocdOnCentos7.vm.network :forwarded_port, host: 27021, guest: 22
     gocdOnCentos7.vm.network :forwarded_port, host: 8153, guest: 8153
     gocdOnCentos7.vm.network :forwarded_port, host: 8154, guest: 8154
     gocdOnCentos7.vm.network "private_network", ip: "192.168.56.13", :netmask => "255.255.0.0"

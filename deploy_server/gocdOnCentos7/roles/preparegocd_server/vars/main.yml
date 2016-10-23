@@ -4,3 +4,5 @@ goserver_admin_username: admin
 goserver_admin_password: password#123
 gocd_admin_sha_passwordfile: /home/go/gocd_admin_sha_passwordfile
 gocd_cruise_config_location: /etc/go/cruise-config.xml
+gouser_home_folder: /home/go/
+shellscript_to_reconfig_xml: /home/go/replaceCruiseConfigXmlFile.sh

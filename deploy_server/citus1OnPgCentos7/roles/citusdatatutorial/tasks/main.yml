@@ -27,9 +27,9 @@
         owner={{ os_user_for_citus_tutorial }}
         group={{ os_user_for_citus_tutorial }}
   with_items:
-    - /home/{{ os_user_for_citus_tutorial }}/'citus-tutorial'
-    - /home/{{ os_user_for_citus_tutorial }}/'data'
-    - /home/{{ os_user_for_citus_tutorial }}/'scripts'
+    - /home/{{ os_user_for_citus_tutorial }}/citus-tutorial
+    - /home/{{ os_user_for_citus_tutorial }}/data
+    - /home/{{ os_user_for_citus_tutorial }}/scripts
 
 - name: This is to register existance of the citus-tutorial tar file, else it will help to download the same
   stat: path=/home/{{ os_user_for_citus_tutorial }}/citus-tutorial/{{ citus_tutorial_file }}.tar

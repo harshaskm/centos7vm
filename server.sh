@@ -59,12 +59,15 @@
         cd ~/centos7vm/deploy_server/$VMNAME
         export ANSIBLE_HOST_KEY_CHECKING=False
         if [ "$TEMPSTR2" == "postgresql" ]; then
+	  sleep 3
           time ansible-playbook -i postgresql_ansible_hosts postgresql_playbook.yml $TEMPSTR3
         fi
         if [ "$TEMPSTR2" == "mysql" ]; then
+	  sleep 3
           time ansible-playbook -i mysql_ansible_hosts mysql_playbook.yml $TEMPSTR3
         fi
         if [ "$TEMPSTR2" == "citusdata" ]; then
+	  sleep 3
           time ansible-playbook -i citus1_ansible_hosts citus1_playbook.yml
           time ansible-playbook -i citus1_tutorial_hosts citus1_tutorial_playbook.yml $TEMPSTR3
         fi

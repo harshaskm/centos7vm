@@ -8,8 +8,18 @@
     - {alias: l, command: 'ls -ltrh'}
     - {alias: eb, command: 'vi ~/.bash_profile'}
 
+- name: Copy over the scripts onto the vm, for later use
+  copy: src=replaceCruiseConfigXmlFile.sh
+        dest={{ gouser_home_folder }}
+        owner={{ os_user_for_gocd_server }}
+        group={{ os_user_for_gocd_server }}
+        mode=750
+
 - name: Generate passwordfile required for goserver access
   shell: echo "admin:`python -c "import base64;import hashlib; print base64.b64encode(hashlib.sha1('{{ goserver_admin_password }}').digest())"`" > {{ gocd_admin_sha_passwordfile }}
+
+- name: Replace line 2 in cruise config xml file
+  shell: "{{ shellscript_to_reconfig_xml }}"
 
 - name: Insert the sha1 file name into the cruise-config.xml
   lineinfile:
@@ -17,12 +27,10 @@
     line='{{ item }}'
     insertbefore="</cruise>"
   with_items:
-    - '     <security>'
-    - '       <passwordFile path="{{ gocd_admin_sha_passwordfile }}" />'
-    - '     </security>'
-    - '  </server>'
-
-
+    - '  <security>'
+    - '    <passwordFile path="{{ gocd_admin_sha_passwordfile }}" />'
+    - '  </security>'
+    - '</server>'
 
 
 
