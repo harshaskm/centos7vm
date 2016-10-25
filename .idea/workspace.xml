@@ -2,62 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6f379e9c-773f-4ac2-8f81-d0598511fc29" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cruise-config.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/citus1OnPgCentos7/.ansible.cfg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/citus1OnPgCentos7/citus1_ansible_hosts" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/citus1OnPgCentos7/citus1_playbook.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/citus1OnPgCentos7/citus1_tutorial_hosts" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/citus1OnPgCentos7/citus1_tutorial_playbook.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/citus1OnPgCentos7/readme.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/citus1OnPgCentos7/roles/citusdatatutorial/files/checkPgCitusExtInstalled.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/citus1OnPgCentos7/roles/citusdatatutorial/files/create2wikipediaTbls.sql" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/citus1OnPgCentos7/roles/citusdatatutorial/files/wikipedia_data_ingest.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/citus1OnPgCentos7/roles/citusdatatutorial/tasks/main.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/citus1OnPgCentos7/roles/citusdatatutorial/vars/main.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/citus1OnPgCentos7/roles/installPostgres/handlers/main.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/citus1OnPgCentos7/roles/installPostgres/tasks/main.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/citus1OnPgCentos7/scripts/destroy_citus1OnPgCentos7.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/citus1OnPgCentos7/vars/main.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/gocdOnCentos7/.ansible.cfg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/gocdOnCentos7/build" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/gocdOnCentos7/gocd_server" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/gocdOnCentos7/installgocd_ansible_hosts" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/gocdOnCentos7/installgocd_playbook.retry" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/gocdOnCentos7/installgocd_playbook.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/gocdOnCentos7/preparegocd_ansible_hosts" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/gocdOnCentos7/preparegocd_playbook.retry" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/gocdOnCentos7/preparegocd_playbook.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/gocdOnCentos7/roles/installgocd_server/files/gocd_server_installer.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/gocdOnCentos7/roles/installgocd_server/tasks/main.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/gocdOnCentos7/roles/installgocd_server/vars/main.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/gocdOnCentos7/roles/preparegocd_server/files/replaceCruiseConfigXmlFile.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/gocdOnCentos7/roles/preparegocd_server/tasks/main.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/gocdOnCentos7/roles/preparegocd_server/vars/main.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/gocdOnCentos7/scripts/destroy_gocdOnPgCentos7.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/gocdOnCentos7/vars/main.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/mysqlOnCentos7/.ansible.cfg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/mysqlOnCentos7/mysql_ansible_hosts" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/mysqlOnCentos7/mysql_playbook.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/mysqlOnCentos7/readme.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/mysqlOnCentos7/roles/createdb/handlers/main.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/mysqlOnCentos7/roles/createdb/tasks/main.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/mysqlOnCentos7/scripts/destroy_mysqlOnCentos7.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/mysqlOnCentos7/vars/main.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/postgresqlOnCentos7/.ansible.cfg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/postgresqlOnCentos7/postgresql_ansible_hosts" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/postgresqlOnCentos7/postgresql_playbook.retry" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/postgresqlOnCentos7/postgresql_playbook.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/postgresqlOnCentos7/roles/createdb/handlers/main.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/postgresqlOnCentos7/roles/createdb/tasks/main.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/postgresqlOnCentos7/scripts/destroy_postgresqlOnCentos7.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/postgresqlOnCentos7/vars/main.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/index.html.1" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/pendingymls/.ansible.cfg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/pendingymls/mysqlOnCentos7/.ansible.cfg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/deploy_server/pendingymls/vars/main.yml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.vagrant/machines/gocdOnCentos7/virtualbox/action_provision" afterPath="$PROJECT_DIR$/.vagrant/machines/gocdOnCentos7/virtualbox/action_provision" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.vagrant/machines/gocdOnCentos7/virtualbox/action_set_name" afterPath="$PROJECT_DIR$/.vagrant/machines/gocdOnCentos7/virtualbox/action_set_name" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.vagrant/machines/gocdOnCentos7/virtualbox/id" afterPath="$PROJECT_DIR$/.vagrant/machines/gocdOnCentos7/virtualbox/id" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.vagrant/machines/gocdOnCentos7/virtualbox/index_uuid" afterPath="$PROJECT_DIR$/.vagrant/machines/gocdOnCentos7/virtualbox/index_uuid" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deploy_server/roles/installgocd_server/tasks/main.yml" afterPath="$PROJECT_DIR$/deploy_server/roles/installgocd_server/tasks/main.yml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.sh" afterPath="$PROJECT_DIR$/server.sh" />
     </list>
     <ignored path="centos7vm.iws" />
@@ -78,7 +31,18 @@
     <favorites_list name="centos7vm" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="main.yml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/deploy_server/roles/installgocd_server/tasks/main.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="495">
+              <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -129,6 +93,7 @@
         <option value="$PROJECT_DIR$/deploy_server/pendingymls/postgresqlOnCentos7/roles/createdb/tasks/main.yml" />
         <option value="$PROJECT_DIR$/deploy_server/roles/installPostgres/tasks/main.yml" />
         <option value="$PROJECT_DIR$/deploy_server/roles/prepareForCitusdataTutorial/tasks/main.yml" />
+        <option value="$PROJECT_DIR$/deploy_server/roles/installgocd_server/tasks/main.yml" />
       </list>
     </option>
   </component>
@@ -168,7 +133,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -252,11 +216,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="prepareForCitusdataTutorial" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vars" />
+              <option name="myItemId" value="installgocd_server" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -278,104 +238,17 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="prepareForCitusdataTutorial" />
+              <option name="myItemId" value="installgocd_server" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="tasks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="centos7vm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="centos7vm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="deploy_server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="roles" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="prepareForCitusdataTutorial" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="centos7vm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="centos7vm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="deploy_server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="roles" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="installPostgres" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tasks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="centos7vm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="centos7vm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="deploy_server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="roles" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="installPostgres" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="centos7vm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="centos7vm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="deploy_server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pendingymls" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -554,12 +427,13 @@
       <workItem from="1476971580364" duration="9969000" />
       <workItem from="1477183682614" duration="5035000" />
       <workItem from="1477278012070" duration="878000" />
-      <workItem from="1477362713520" duration="896000" />
+      <workItem from="1477362713520" duration="1809000" />
+      <workItem from="1477379252837" duration="405000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="137661000" />
+    <option name="totallyTimeSpent" value="138979000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -572,9 +446,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18578352" sideWeight="0.48630136" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18820679" sideWeight="0.48630136" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32923076" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289855" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -609,7 +483,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/deploy_DBs/citus1OnPgCentos7/exec_yml.sh" />
     <entry file="file://$PROJECT_DIR$/deploy_gocd/exec_yml.sh" />
     <entry file="file://$PROJECT_DIR$/deploy_DBs/citus1OnPgCentos7/vars/main.yml" />
     <entry file="file://$PROJECT_DIR$/deploy_gocd/gocd_playbook.yml" />
@@ -664,13 +537,6 @@
     <entry file="file://$PROJECT_DIR$/deploy_server/mysqlOnCentos7/mysql_ansible_hosts" />
     <entry file="file://$PROJECT_DIR$/deploy_server/mysqlOnCentos7/roles/createdb/tasks/main.yml" />
     <entry file="file://$PROJECT_DIR$/deploy_server/mysqlOnCentos7/mysql_playbook.yml" />
-    <entry file="file://$PROJECT_DIR$/deploy_server/roles/installgocd_server/tasks/main.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="48" column="34" selection-start-line="48" selection-start-column="34" selection-end-line="48" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/deploy_server/installgocd_playbook.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -678,18 +544,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/deploy_server/preparegocd_playbook.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="25" selection-start-line="0" selection-start-column="25" selection-end-line="0" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/deploy_server/preparegocd_playbook.yml" />
     <entry file="file://$PROJECT_DIR$/deploy_server/roles/citusdatatutorial/tasks/main.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="16" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -697,23 +556,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="490">
           <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/deploy_server/pendingymls/postgresqlOnCentos7/roles/createdb/tasks/main.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/deploy_server/pendingymls/postgresqlOnCentos7/roles/createdb/tasks/main.yml" />
     <entry file="file://$PROJECT_DIR$/deploy_server/roles/prepareForCitusdataTutorial/tasks/main.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -721,6 +571,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="18" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deploy_server/roles/mysqlOnCentos7_createdb/tasks/main.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deploy_server/roles/installgocd_server/tasks/main.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
           <folding />
         </state>
       </provider>

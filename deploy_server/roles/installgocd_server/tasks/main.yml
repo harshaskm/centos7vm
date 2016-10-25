@@ -30,7 +30,7 @@
 - name: Using github url as authorized key source for go user
   authorized_key: user=go
         key=https://raw.githubusercontent.com/harshaskm/centos7vm/master/filesForVMs/put_into_citus1vm_auth_key
-        validate_certs=False
+#        validate_certs=False
 
 - name: Copy over the scripts onto the vm, for later use
   copy: src=gocd_server_installer.sh

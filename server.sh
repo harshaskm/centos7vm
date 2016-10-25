@@ -56,6 +56,7 @@
         #TEMPSTR3="-vvvv"
         TEMPSTR3="-vvv"
       fi
+	chmod 600 filesForVMs/insecure_citus1_pvt_key
         cd ~/centos7vm/deploy_server
         export ANSIBLE_HOST_KEY_CHECKING=False
         if [ "$TEMPSTR2" == "postgresql" ]; then
