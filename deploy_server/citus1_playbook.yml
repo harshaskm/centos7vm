@@ -1,0 +1,19 @@
+---
+- name: Create a PostgreSQL DB server
+  hosts: citusdata_dbserver_asVagrant
+  sudo: yes
+  sudo_user: root
+  remote_user: root
+  vars_files:
+    - vars/main.yml
+
+  roles:
+  - installPostgres
+  - prepareForCitusdataTutorial
+
+- name: CitusData tutorial
+  hosts: citusdata_dbserver_asCitus
+
+  roles:
+  - citusdatatutorial
+

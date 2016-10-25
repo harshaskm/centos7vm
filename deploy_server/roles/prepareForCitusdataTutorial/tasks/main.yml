@@ -1,0 +1,23 @@
+---
+- name: create a citus-tutorial directory if it doesn't exist 
+  file: path=/var/lib/pgsql state=directory
+        mode=0755
+        recurse=yes
+
+# Until here we just built the VM and installed Postgresql software.
+# we have not created any database yet.
+
+- name: Add a group to assign to the OS user which will be created in the next step
+  group: name={{ os_user_for_citus_tutorial }} state=present
+
+- name: Create a user to access and work with the Postgres databases
+  user: name={{ os_user_for_citus_tutorial }}
+        createhome=yes
+        group={{ os_user_for_citus_tutorial }}
+        groups=postgres
+        home=/home/{{ os_user_for_citus_tutorial }}/
+        state=present
+
+- name: Using github url as authorized key source for {{ os_user_for_citus_tutorial }} user
+  authorized_key: user={{ os_user_for_citus_tutorial }} key={{ citus1_authkey_url }}
+

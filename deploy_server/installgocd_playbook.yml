@@ -1,0 +1,16 @@
+---
+- name: Create a GoCD server
+  hosts: gocd_server_asVagrant
+  sudo: yes
+  sudo_user: root
+  remote_user: root
+
+  roles:
+  - installgocd_server
+
+- name: Configure GoCD server
+  hosts: gocd_server_asGo
+
+  roles:
+  - preparegocd_server
+
