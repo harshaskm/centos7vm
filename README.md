@@ -5,9 +5,9 @@ This is an effort to have an automated way of downloading, installing and config
   Mysql etc
 
 ## Getting Started
-  Once you have the repo cloned, you could do the following to get yourself a working vm with an open source database installed, for ex:
-
-    cd centos7vm
+  Once you have the repo cloned, you could do the following to get yourself a working vm with an open source database installed.
+  An example of how to initiate it:
+    In the folder where the repository is downloaded
     ./server.sh build postgresql
 
 ### Prerequisities
