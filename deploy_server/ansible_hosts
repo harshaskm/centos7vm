@@ -3,13 +3,13 @@
 gocd_server_asVagrant ansible_ssh_host=192.168.56.13 ansible_ssh_user=vagrant ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
 
 [gocd_server_asGo]
-gocd_server_asGo ansible_ssh_host=192.168.56.13 ansible_ssh_user=go ansible_ssh_private_key_file=~/centos7vm/filesForVMs/insecure_citus1_pvt_key
+gocd_server_asGo ansible_ssh_host=192.168.56.13 ansible_ssh_user=go ansible_ssh_private_key_file=../filesForVMs/insecure_citus1_pvt_key
 
 [citusdata_dbserver_asVagrant]
 citusdata_dbserver_asVagrant ansible_ssh_host=192.168.56.12 ansible_ssh_user=vagrant ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
 
 [citusdata_dbserver_asCitus]
-citusdata_dbserver_asCitus ansible_ssh_host=192.168.56.12 ansible_ssh_user=citus1 ansible_ssh_private_key_file=~/centos7vm/filesForVMs/insecure_citus1_pvt_key
+citusdata_dbserver_asCitus ansible_ssh_host=192.168.56.12 ansible_ssh_user=citus1 ansible_ssh_private_key_file=../filesForVMs/insecure_citus1_pvt_key
 
 [postgresqlOnCentos7]
 postgresqlOnCentos7 ansible_ssh_host=192.168.56.10 ansible_ssh_user=vagrant ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key

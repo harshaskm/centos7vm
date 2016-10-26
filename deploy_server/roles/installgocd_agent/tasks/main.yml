@@ -1,0 +1,48 @@
+---
+- name: Ensure certain packages are installed
+  yum: name={{ item }} state=present
+  with_items:
+    - bash
+    - openssl
+  tags: packages
+
+- name: Add a group to assign to the OS user which will be created in the next step
+  group: name=go state=present
+
+- name: fix the go user
+  user: name=go
+        createhome=yes
+        group=go
+        groups=go
+        home=/home/go/
+        state=present
+
+- name: Create directory /var/go, because while installing go it checks for the existence of this folder
+  file: path={{ item }}
+        state=directory
+        owner=go
+        mode=0755
+  with_items:
+    - /var/go
+
+- name: Using github url as authorized key source for go user
+  authorized_key: user=go
+        key=https://raw.githubusercontent.com/harshaskm/centos7vm/master/filesForVMs/put_into_citus1vm_auth_key
+
+- name: Copy over the scripts onto the vm, for later use
+  copy: src=gocd_server_installer.sh
+        mode=750
+        dest=/home/go/.
+
+- name: Install GoCD server
+  command: sudo /home/go/gocd_server_installer.sh
+
+- name: Add firewall exception for GoCD server ports
+  command: firewall-cmd --zone=public --add-port={{ item }}/tcp --permanent
+  with_items:
+    - "{{ gocd_server_listen_port1 }}"
+    - "{{ gocd_server_listen_port2 }}"
+
+- name: Firewall deamon needs a restart for the above change to reflect
+  command: firewall-cmd --reload
+

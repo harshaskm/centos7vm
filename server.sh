@@ -57,22 +57,21 @@
         TEMPSTR3="-vvv"
       fi
 	chmod 600 filesForVMs/insecure_citus1_pvt_key
-        cd ~/centos7vm/deploy_server
         export ANSIBLE_HOST_KEY_CHECKING=False
         if [ "$TEMPSTR2" == "postgresql" ]; then
 	  sleep 3
-          time ansible-playbook -i ansible_hosts postgresqlOnCentos7_playbook.yml $TEMPSTR3
+          time ansible-playbook -i deploy_server/ansible_hosts deploy_server/postgresqlOnCentos7_playbook.yml $TEMPSTR3
         fi
         if [ "$TEMPSTR2" == "mysql" ]; then
 	  sleep 3
-          time ansible-playbook -i ansible_hosts mysqlOnCentos7_playbook.yml $TEMPSTR3
+          time ansible-playbook -i deploy_server/ansible_hosts deploy_server/mysqlOnCentos7_playbook.yml $TEMPSTR3
         fi
         if [ "$TEMPSTR2" == "citusdata" ]; then
 	  sleep 3
-          time ansible-playbook -i ansible_hosts citus1_playbook.yml $TEMPSTR3
+          time ansible-playbook -i deploy_server/ansible_hosts deploy_server/citus1_playbook.yml $TEMPSTR3
         fi
         if [ "$TEMPSTR2" == "gocd_server" ]; then
 	  sleep 3
-          time ansible-playbook -i ansible_hosts installgocd_playbook.yml $TEMPSTR3
+          time ansible-playbook -i deploy_server/ansible_hosts deploy_server/installgocd_playbook.yml $TEMPSTR3
         fi
 

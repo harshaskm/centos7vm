@@ -1,0 +1,6 @@
+---
+os_user_for_gocd_agent: go
+gocd_server_listen_port1: 8153
+gocd_server_listen_port2: 8154
+gocd_server_ip: 192.168.56.13
+

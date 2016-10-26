@@ -1,17 +1,4 @@
 ---
-
-# To execute this yml file
-#   change directory to centos7vm/deploy_DBs//{{ os_user_for_citus_tutorial }}/OnPgCentos7
-#   and command to execute:
-#     ansible-playbook -i citus1_tutorial_hosts citus1_tutorial_playbook.yml
-
-# ---~~~~~~*****~~~~~~---
-#
-# Lesson learnt:
-#   Whenever there is a requirement to add text (lines) to a file, you have to use 'shell' module and not 'command' module:
-#
-# ---~~~~~~*****~~~~~~---
-
 - name: Adding my usual alias shortcuts to .bash_profile of {{ os_user_for_citus_tutorial }} user
   lineinfile:
     dest=/home/{{ os_user_for_citus_tutorial }}/.bash_profile
