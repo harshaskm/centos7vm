@@ -14,9 +14,3 @@
 - name: Start the database service
   command: sudo systemctl start postgresql-9.5.service
 
-
-
-
-
-
-

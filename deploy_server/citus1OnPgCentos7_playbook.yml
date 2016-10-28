@@ -9,11 +9,12 @@
 
   roles:
   - installPostgres
-  - prepareForCitusdataTutorial
+  - citus1OnPgCentos7_prepare
+
 
 - name: CitusData tutorial
   hosts: citusdata_dbserver_asCitus
 
   roles:
-  - citusdatatutorial
+  - citus1OnPgCentos7_install
 

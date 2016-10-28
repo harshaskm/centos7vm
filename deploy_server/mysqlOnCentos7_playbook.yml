@@ -1,5 +1,5 @@
 ---
-- name: Create a PostgreSQL DB server
+- name: Create a MySql DB server
   hosts: mysqlOnCentos7_dbserver_asVagrant
   sudo: yes
   sudo_user: root

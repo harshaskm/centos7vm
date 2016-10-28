@@ -1,11 +1,4 @@
 ---
-- name: Ensure certain packages are installed
-  yum: name={{ item }} state=present
-  with_items:
-    - bash
-    - openssl
-  tags: packages
-
 - name: Add a group to assign to the OS user which will be created in the next step
   group: name=go state=present
 
@@ -30,19 +23,22 @@
         key=https://raw.githubusercontent.com/harshaskm/centos7vm/master/filesForVMs/put_into_citus1vm_auth_key
 
 - name: Copy over the scripts onto the vm, for later use
-  copy: src=gocd_server_installer.sh
+  copy: src=gocd_agent_installer.sh
         mode=750
         dest=/home/go/.
 
-- name: Install GoCD server
-  command: sudo /home/go/gocd_server_installer.sh
+- name: Install GoCD agent
+  command: sudo /home/go/gocd_agent_installer.sh
 
-- name: Add firewall exception for GoCD server ports
-  command: firewall-cmd --zone=public --add-port={{ item }}/tcp --permanent
-  with_items:
-    - "{{ gocd_server_listen_port1 }}"
-    - "{{ gocd_server_listen_port2 }}"
+- name: Replacing the line in the /etc/default/go-agent file to configure the right gocd_server ipaddress
+  lineinfile:
+    dest=/etc/default/go-agent
+    regexp='GO_SERVER_URL=https://127.0.0.1:8154/go'
+    line="GO_SERVER_URL=https://{{ gocd_server_ip }}:{{ gocd_server_listen_port2 }}/go"
+    state=present
+    backrefs=yes
 
-- name: Firewall deamon needs a restart for the above change to reflect
-  command: firewall-cmd --reload
+- name: Restarting go-agent to reflect changes in go-agent config to identify the server
+  service: name=go-agent state=restarted
+
 

@@ -1,0 +1,10 @@
+---
+- name: Create a GoCD server
+  hosts: dbservers_asVagrant
+  sudo: yes
+  sudo_user: root
+  remote_user: root
+
+  roles:
+  - gocdAgentOnVM_install
+
