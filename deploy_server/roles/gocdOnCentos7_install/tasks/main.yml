@@ -27,10 +27,8 @@
     - /var/go
 #    - /home/go
 
-- name: Using github url as authorized key source for go user
-  authorized_key: user=go
-        key=https://raw.githubusercontent.com/harshaskm/centos7vm/master/filesForVMs/put_into_citus1vm_auth_key
-#        validate_certs=False
+- name: Creating authorized key for {{ os_user_for_gocd_server }} user
+  authorized_key: user={{ os_user_for_gocd_server }} key="{{ lookup('file', 'roles/citus1OnPgCentos7_prepare/files/put_into_citus1vm_auth_key') }}"
 
 - name: Copy over the scripts onto the vm, for later use
   copy: src=gocd_server_installer.sh

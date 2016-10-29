@@ -1,9 +1,9 @@
 ---
 - name: Create a GoCD server
   hosts: gocd_server_asVagrant
-  sudo: yes
-  sudo_user: root
-  remote_user: root
+  become: yes
+  become_method: sudo
+  become_user: root
 
   roles:
   - gocdOnCentos7_install

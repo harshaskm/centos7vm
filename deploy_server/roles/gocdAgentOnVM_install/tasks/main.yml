@@ -1,34 +1,33 @@
 ---
 - name: Add a group to assign to the OS user which will be created in the next step
-  group: name=go state=present
+  group: name={{ os_user_for_gocd_agent }} state=present
 
-- name: fix the go user
-  user: name=go
+- name: fix the {{ os_user_for_gocd_agent }} user
+  user: name={{ os_user_for_gocd_agent }}
         createhome=yes
-        group=go
-        groups=go
-        home=/home/go/
+        group={{ os_user_for_gocd_agent }}
+        groups={{ os_user_for_gocd_agent }}
+        home=/home/{{ os_user_for_gocd_agent }}/
         state=present
 
-- name: Create directory /var/go, because while installing go it checks for the existence of this folder
+- name: Create directory /var/{{ os_user_for_gocd_agent }}, because while installing go it checks for the existence of this folder
   file: path={{ item }}
         state=directory
-        owner=go
+        owner={{ os_user_for_gocd_agent }}
         mode=0755
   with_items:
-    - /var/go
+    - /var/{{ os_user_for_gocd_agent }}
 
-- name: Using github url as authorized key source for go user
-  authorized_key: user=go
-        key=https://raw.githubusercontent.com/harshaskm/centos7vm/master/filesForVMs/put_into_citus1vm_auth_key
+- name: Creating authorized key for {{ os_user_for_gocd_agent }} user
+  authorized_key: user={{ os_user_for_gocd_agent }} key="{{ lookup('file', 'roles/citus1OnPgCentos7_prepare/files/put_into_citus1vm_auth_key') }}"
 
 - name: Copy over the scripts onto the vm, for later use
   copy: src=gocd_agent_installer.sh
         mode=750
-        dest=/home/go/.
+        dest=/home/{{ os_user_for_gocd_agent }}/.
 
 - name: Install GoCD agent
-  command: sudo /home/go/gocd_agent_installer.sh
+  command: sudo /home/{{ os_user_for_gocd_agent }}/gocd_agent_installer.sh
 
 - name: Replacing the line in the /etc/default/go-agent file to configure the right gocd_server ipaddress
   lineinfile:
