@@ -1,9 +1,10 @@
 ---
 - name: Create a PostgreSQL DB server
   hosts: postgresqlOnCentos7
-  sudo: yes
-  sudo_user: root
-  remote_user: root
+  become: yes
+  become_method: sudo
+  become_user: root
+
   vars_files:
     - vars/main.yml
 
