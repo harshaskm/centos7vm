@@ -7,7 +7,7 @@
     TEMPSTR2=$2;
     TEMPSTR3=$3;
     # Checking to see if verbose option was specified, else it will be left blank
-    if [ "$4" == "v" ]; then
+    if [ "$4" == "v" ] || [ "$3" == "v" ]; then
         #TEMPSTR4="-vvvv"
         TEMPSTR4="-vvv"
     fi
