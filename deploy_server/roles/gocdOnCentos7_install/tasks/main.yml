@@ -36,7 +36,7 @@
         dest=/home/go/.
 
 - name: Install GoCD server
-  command: sudo /home/go/gocd_server_installer.sh
+  command: /home/go/gocd_server_installer.sh
 
 - name: Add firewall exception for GoCD server ports
   command: firewall-cmd --zone=public --add-port={{ item }}/tcp --permanent

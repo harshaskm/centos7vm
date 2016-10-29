@@ -27,7 +27,7 @@
         dest=/home/{{ os_user_for_gocd_agent }}/.
 
 - name: Install GoCD agent
-  command: sudo /home/{{ os_user_for_gocd_agent }}/gocd_agent_installer.sh
+  command: /home/{{ os_user_for_gocd_agent }}/gocd_agent_installer.sh
 
 - name: Replacing the line in the /etc/default/go-agent file to configure the right gocd_server ipaddress
   lineinfile:

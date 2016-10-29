@@ -12,5 +12,5 @@
   tags: initdb
 
 - name: Start the database service
-  command: sudo systemctl start postgresql-9.5.service
+  command: systemctl start postgresql-9.5.service
 
