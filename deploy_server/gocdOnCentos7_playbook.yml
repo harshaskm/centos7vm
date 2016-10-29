@@ -10,7 +10,10 @@
 
 
 - name: Configure GoCD server
-  hosts: gocd_server_asGo
+  hosts: gocd_server_asVagrant
+  become: yes
+  become_method: sudo
+  become_user: go
 
   roles:
   - gocdOnCentos7_prepare

@@ -18,6 +18,20 @@
         home=/home/{{ os_user_for_citus_tutorial }}/
         state=present
 
-- name: Using github url as authorized key source for {{ os_user_for_citus_tutorial }} user
-  authorized_key: user={{ os_user_for_citus_tutorial }} key={{ citus1_authkey_url }}
+- name: Check to see if /home/citus1/.bash_profile exists
+  stat: path=/home/citus1/.bash_profile
+  register: citus1_bash_profile
+
+- name: Create file /home/citus1/.bash_profile
+  file: path=/home/citus1/.bash_profile state=touch
+  when: citus1_bash_profile.stat.exists == False
+
+- name: Set file permissions for /home/citus1/.bash_profile
+  file: path=/home/citus1/.bash_profile state=file
+        owner={{ os_user_for_citus_tutorial }}
+        group={{ os_user_for_citus_tutorial }}
+  when: citus1_bash_profile.stat.exists == False
+
+- name: Creating authorized key for {{ os_user_for_citus_tutorial }} user
+  authorized_key: user={{ os_user_for_citus_tutorial }} key="{{ lookup('file', 'roles/citus1OnPgCentos7_prepare/files/put_into_citus1vm_auth_key') }}"
 

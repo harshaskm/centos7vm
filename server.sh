@@ -85,6 +85,6 @@
 
         if [ "$TEMPSTR3" == "with_gocd" ]; then
             ansible-playbook -i deploy_server/ansible_hosts deploy_server/${GOCD_SERVER_VM_NAME}_playbook.yml $TEMPSTR4
-            ansible-playbook -i deploy_server/ansible_hosts deploy_server/gocdAgentOnVM_playbook.yml
+            ansible-playbook -i deploy_server/ansible_hosts deploy_server/gocdAgentOnVM_playbook.yml $TEMPSTR4
         fi
 

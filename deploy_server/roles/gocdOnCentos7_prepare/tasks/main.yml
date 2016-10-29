@@ -32,5 +32,7 @@
     - '  </security>'
     - '</server>'
 
+- name: Creating authorized key for {{ os_user_for_gocd_server }} user
+  authorized_key: user={{ os_user_for_gocd_server }} key="{{ lookup('file', 'roles/citus1OnPgCentos7_prepare/files/put_into_citus1vm_auth_key') }}"
 
 

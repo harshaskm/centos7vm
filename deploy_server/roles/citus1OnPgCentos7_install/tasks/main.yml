@@ -203,7 +203,7 @@
   register: z
 
 - name: Run the data ingest script, provided by citusdata, this collects information at runtime from wikipedia of the ongoing edits
-  command: timeout 20s scripts/collect-wikipedia-user-data postgresql://:9700
+  command: timeout 40s scripts/collect-wikipedia-user-data postgresql://:9700
   register: a
 #  until: a.stdout.find("Exception ignored in: <bound method SocketIO") = -1
   until: not a.stdout | search('Exception ignored in{{':'}} <bound method SocketIO')
