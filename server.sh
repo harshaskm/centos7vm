@@ -69,22 +69,61 @@
 
     # Destroy/Tear down and boot up the server/s (without or without GoCD as per parameter 3:
 	if [ "$TEMPSTR1" == "rebuild" ]; then
-           deploy_server/scripts/destroy_all_vm.sh $VMNAME $TEMPSTR3;
+	   echo "      							" 
+	   echo "  **************************************************	" 
+	   echo "       About to Rebuild the VM/s			"
+           echo deploy_server/scripts/destroy_all_vm.sh $VMNAME $TEMPSTR3;
+	   echo "  **************************************************	" 
+	   echo "      							" 
+		   deploy_server/scripts/destroy_all_vm.sh $VMNAME $TEMPSTR3;
 	fi
-        deploy_server/scripts/vagrant_up.sh $VMNAME $TEMPSTR3;
+
+	echo "      							" 
+	echo "  **************************************************	" 
+	echo "       About to Boot up the VM/s				"
+        echo deploy_server/scripts/vagrant_up.sh $VMNAME $TEMPSTR3;
+	echo "  **************************************************	" 
+	echo "      							" 
+		deploy_server/scripts/vagrant_up.sh $VMNAME $TEMPSTR3;
 
     # Executing the yml files to download, install and configure the selected server
         chmod 600 filesForVMs/insecure_citus1_pvt_key
         sleep 3
 
         if [ "$TEMPSTR2" == "all" ]; then
-            ansible-playbook -i deploy_server/ansible_hosts deploy_server/deploy_servers_playbook.yml $TEMPSTR4
+	    echo "      						" 
+	    echo "  **************************************************	" 
+	    echo "       About to deploy the server/s			"
+            echo ansible-playbook -i deploy_server/ansible_hosts deploy_server/deploy_servers_playbook.yml $TEMPSTR4
+	    echo "  **************************************************	" 
+	    echo "      						" 
+		    ansible-playbook -i deploy_server/ansible_hosts deploy_server/deploy_servers_playbook.yml $TEMPSTR4
         else
-            ansible-playbook -i deploy_server/ansible_hosts deploy_server/deploy_servers_playbook.yml --limit $TEMPSTR2 $TEMPSTR4
+	    echo "      						" 
+	    echo "  **************************************************	" 
+	    echo "       About to deploy vm server			"
+            echo ansible-playbook -i deploy_server/ansible_hosts deploy_server/deploy_servers_playbook.yml --limit $TEMPSTR2 $TEMPSTR4
+	    echo "  **************************************************	" 
+	    echo "      						" 
+		    ansible-playbook -i deploy_server/ansible_hosts deploy_server/deploy_servers_playbook.yml --limit $TEMPSTR2 $TEMPSTR4
         fi
 
         if [ "$TEMPSTR3" == "with_gocd" ]; then
-            ansible-playbook -i deploy_server/ansible_hosts deploy_server/${GOCD_SERVER_VM_NAME}_playbook.yml $TEMPSTR4
-            ansible-playbook -i deploy_server/ansible_hosts deploy_server/gocdAgentOnVM_playbook.yml $TEMPSTR4
+	    echo "      						" 
+	    echo "  **************************************************	" 
+	    echo "       About to deploy GoCD server			"
+            echo ansible-playbook -i deploy_server/ansible_hosts deploy_server/deploy_servers_playbook.yml --limit ${GOCD_SERVER_VM_NAME} $TEMPSTR4
+	    echo "  **************************************************	" 
+	    echo "      						" 
+		    ansible-playbook -i deploy_server/ansible_hosts deploy_server/deploy_servers_playbook.yml --limit ${GOCD_SERVER_VM_NAME} $TEMPSTR4
+
+	    echo "      						" 
+	    echo "  **************************************************	" 
+	    echo "       About to deploy GoCD Agent/s			"
+            echo ansible-playbook -i deploy_server/ansible_hosts deploy_server/deploy_servers_playbook.yml --limit VMsToInstallAgents $TEMPSTR4
+	    echo "  **************************************************	" 
+	    echo "      						" 
+		    ansible-playbook -i deploy_server/ansible_hosts deploy_server/deploy_servers_playbook.yml --limit VMsToInstallAgents $TEMPSTR4
+
         fi
 
