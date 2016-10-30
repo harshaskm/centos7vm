@@ -1,0 +1,78 @@
+---
+- name: Create a PostgreSQL DB server
+  hosts: postgresqlOnCentos7
+  become: yes
+  become_user: root
+
+  vars_files:
+    - vars/main.yml
+
+  roles:
+  - installPostgres
+  - postgresqlOnCentos7_createdb
+
+---
+- name: Create a MySql DB server
+  hosts: mysqlOnCentos7_dbserver_asVagrant
+  become: yes
+  become_method: sudo
+  become_user: root
+
+  vars_files:
+    - vars/main.yml
+
+  roles:
+  - mysqlOnCentos7_createdb
+
+---
+- name: Create a PostgreSQL DB server
+  hosts: citusdata_dbserver
+  become: yes
+  become_method: sudo
+  become_user: root
+
+  vars_files:
+    - vars/main.yml
+
+  roles:
+  - installPostgres
+  - citus1OnPgCentos7_prepare
+
+
+- name: CitusData tutorial
+  hosts: citusdata_dbserver
+  become: yes
+  become_method: sudo
+  become_user: citus1
+
+  roles:
+  - citus1OnPgCentos7_install
+
+---
+- name: Create a GoCD server
+  hosts: gocd_server_asVagrant
+  become: yes
+  become_user: root
+
+  roles:
+  - gocdOnCentos7_install
+
+
+- name: Configure GoCD server
+  hosts: gocd_server_asVagrant
+  become: yes
+  become_user: go
+
+  roles:
+  - gocdOnCentos7_prepare
+
+---
+- name: Create a GoCD server
+  hosts: dbservers_asVagrant
+  become: yes
+  become_method: sudo
+  become_user: root
+
+  roles:
+  - gocdAgentOnVM_install
+

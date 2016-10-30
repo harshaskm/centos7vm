@@ -1,6 +1,6 @@
 ---
 - name: Create a MySql DB server
-  hosts: mysqlOnCentos7_dbserver_asVagrant
+  hosts: mysql
   become: yes
   become_method: sudo
   become_user: root

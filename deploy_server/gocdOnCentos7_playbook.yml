@@ -1,6 +1,6 @@
 ---
 - name: Create a GoCD server
-  hosts: gocd_server_asVagrant
+  hosts: gocd_server
   become: yes
   become_user: root
 
@@ -9,7 +9,7 @@
 
 
 - name: Configure GoCD server
-  hosts: gocd_server_asVagrant
+  hosts: gocd_server
   become: yes
   become_user: go
 

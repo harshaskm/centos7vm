@@ -1,6 +1,6 @@
 ---
 - name: Create a PostgreSQL DB server
-  hosts: citusdata_dbserver
+  hosts: citusdata
   become: yes
   become_method: sudo
   become_user: root
@@ -14,7 +14,7 @@
 
 
 - name: CitusData tutorial
-  hosts: citusdata_dbserver
+  hosts: citusdata
   become: yes
   become_method: sudo
   become_user: citus1
