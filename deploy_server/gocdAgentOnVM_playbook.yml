@@ -1,9 +1,0 @@
----
-- name: Install GoCD agent
-  hosts: VMsToInstallAgents
-  become: yes
-  become_method: sudo
-  become_user: root
-
-  roles:
-  - gocdAgentOnVM_install

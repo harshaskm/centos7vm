@@ -78,11 +78,9 @@
         sleep 3
 
         if [ "$TEMPSTR2" == "all" ]; then
-            ansible-playbook -i deploy_server/ansible_hosts deploy_server/${POSTGRESQL_VM_NAME}_playbook.yml $TEMPSTR4
-            ansible-playbook -i deploy_server/ansible_hosts deploy_server/${MYSQL_VM_NAME}_playbook.yml $TEMPSTR4
-            ansible-playbook -i deploy_server/ansible_hosts deploy_server/${CITUSDATA_VM_NAME}_playbook.yml $TEMPSTR4
+            ansible-playbook -i deploy_server/ansible_hosts deploy_server/deploy_servers_playbook.yml $TEMPSTR4
         else
-            ansible-playbook -i deploy_server/ansible_hosts deploy_server/${VMNAME}_playbook.yml $TEMPSTR4
+            ansible-playbook -i deploy_server/ansible_hosts deploy_server/deploy_servers_playbook.yml --limit $TEMPSTR2 $TEMPSTR4
         fi
 
         if [ "$TEMPSTR3" == "with_gocd" ]; then
