@@ -1,6 +1,6 @@
 ---
-- name: Create a GoCD server
-  hosts: dbservers_asVagrant
+- name: Install GoCD agent
+  hosts: VMsToInstallAgents
   become: yes
   become_method: sudo
   become_user: root

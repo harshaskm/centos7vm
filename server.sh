@@ -68,7 +68,9 @@
     esac
 
     # Destroy/Tear down and boot up the server/s (without or without GoCD as per parameter 3:
-        deploy_server/scripts/destroy_all_vm.sh $VMNAME $TEMPSTR3;
+	if [ "$TEMPSTR1" == "rebuild" ]; then
+           deploy_server/scripts/destroy_all_vm.sh $VMNAME $TEMPSTR3;
+	fi
         deploy_server/scripts/vagrant_up.sh $VMNAME $TEMPSTR3;
 
     # Executing the yml files to download, install and configure the selected server

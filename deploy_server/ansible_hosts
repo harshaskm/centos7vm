@@ -1,19 +1,11 @@
-
-[gocd_server]
-gocd_server ansible_ssh_host=192.168.56.13 ansible_ssh_user=vagrant ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
-
-[citusdata]
-ansible_ssh_host=192.168.56.12 ansible_ssh_user=vagrant ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
-
-[postgresql]
 postgresql ansible_ssh_host=192.168.56.10 ansible_ssh_user=vagrant ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
-
-[mysql]
 mysql ansible_ssh_host=192.168.56.11 ansible_ssh_user=vagrant ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
-
-[dbservers_asVagrant]
-mysql ansible_ssh_host=192.168.56.11 ansible_ssh_user=vagrant ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
-postgresql ansible_ssh_host=192.168.56.10 ansible_ssh_user=vagrant ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
 citusdata ansible_ssh_host=192.168.56.12 ansible_ssh_user=vagrant ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
 gocd_server ansible_ssh_host=192.168.56.13 ansible_ssh_user=vagrant ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
+
+[VMsToInstallAgents]
+postgresql
+mysql
+citusdata
+gocd_server
 
