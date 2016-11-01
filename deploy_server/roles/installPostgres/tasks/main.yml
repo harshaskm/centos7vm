@@ -32,7 +32,3 @@
   command: systemctl enable postgresql-9.5
   tags: enablePosgresService
 
-
-
-
-

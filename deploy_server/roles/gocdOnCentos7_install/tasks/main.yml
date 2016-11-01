@@ -47,20 +47,3 @@
 - name: Firewall deamon needs a restart for the above change to reflect
   command: firewall-cmd --reload
 
-#- name: Adding exception for gocd port 8153 to selinux through semanage
-#  seport: ports={{ item }} proto=tcp setype=http_port_t state=present
-#  with_items:
-#    - "{{ gocd_server_listen_port1 }}"
-#    - "{{ gocd_server_listen_port2 }}"
-
-#iptables -A INPUT -p tcp -m tcp --dport 8153 -j ACCEPT
-#iptables -A INPUT -p tcp -m tcp --dport 8154 -j ACCEPT
-#
-# To check the same:
-#
-# iptables -S | grep -E "(8153|8154)"
-#
-# This is to check to see if the semanage exception port command was successful:
-# semanage port -l | grep -E "(8153|8154)"
-
-
