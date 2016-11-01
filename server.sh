@@ -94,7 +94,7 @@
 	    echo "      						" 
 	    echo "  **************************************************	" 
 	    echo "       About to deploy the server/s			"
-            echo ansible-playbook -i deploy_server/ansible_hosts deploy_server/deploy_servers_playbook.yml $TEMPSTR4
+            echo ansible-playbook -i deploy_server/ansible_hosts deploy_server/deploy_servers_playbook.yml --limit db_servers $TEMPSTR4
 	    echo "  **************************************************	" 
 	    echo "      						" 
 		    ansible-playbook -i deploy_server/ansible_hosts deploy_server/deploy_servers_playbook.yml $TEMPSTR4
