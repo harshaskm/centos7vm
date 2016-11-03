@@ -40,4 +40,28 @@
 - name: Restarting go-agent to reflect changes in go-agent config to identify the server
   service: name=go-agent state=restarted
 
+- name: Adding my usual alias shortcuts to .bash_profile of {{ os_user_for_gocd_agent }} user
+  lineinfile:
+    dest=/home/{{ os_user_for_gocd_agent }}/.bash_profile
+    line="alias {{item.alias}}='{{item.command}}'"
+  with_items:
+    - {alias: l, command: 'ls -ltrh'}
+    - {alias: eb, command: 'vi ~/.bash_profile'}
+
+- name: Overwrite the uuid for go-agent on the vm to what is defined in the ansible-hosts file for the said vm
+  shell: echo {{ goAgentUuid }} > /var/lib/go-agent/config/guid.txt
+  register: guid_replacement_task_result
+  until: guid_replacement_task_result.rc == 0
+  when: not inventory_hostname == "gocdOnCentos7"
+  retries: 10
+  delay: 3
+  ignore_errors: yes
+
+- name: fixing file ownership
+  file: path={{item}}
+        owner={{ os_user_for_gocd_agent }}
+        group={{ os_user_for_gocd_agent }}
+  with_items:
+    - /home/{{ os_user_for_gocd_agent }}/.bash_profile
+    - /var/lib/go-agent/config/guid.txt
 

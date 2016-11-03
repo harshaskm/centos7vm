@@ -1,30 +1,57 @@
 
-postgresql ansible_ssh_host=192.168.56.10
-mysql ansible_ssh_host=192.168.56.11
-citusdata ansible_ssh_host=192.168.56.12
-gocd_server ansible_ssh_host=192.168.56.13
+#-------------------------------------------------------------
+#
+# Currently 3 database servers are defined and 1 gocd_server
+#
+#-------------------------------------------------------------
 
-[servers]
-postgresql
-mysql
-citusdata
-gocd_server
+#-------------------------------------------------------------
+#Following 3 lines are DB server entries, initially they are to be defined in individual lines
+#   Later on they will be divided into groups, to handle them separately
+#-------------------------------------------------------------
+postgresql_db ansible_ssh_host=192.168.56.10
+mysql_db ansible_ssh_host=192.168.56.11
+citusdata_db ansible_ssh_host=192.168.56.12
 
+#-------------------------------------------------------------
+#This is an entry to define the host for the GoCD server
+gocd_server ansible_ssh_host=192.168.56.13 ansible_ssh_user=vagrant ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
+
+#-------------------------------------------------------------
+#Following are same database hosts which were defined earlier
+#   Defining here again with a different label so that these
+#   lines could be used while installing agents
+postgresql_goagent ansible_ssh_host=192.168.56.10
+mysql_goagent ansible_ssh_host=192.168.56.11
+citusdata_goagent ansible_ssh_host=192.168.56.12
+
+#-------------------------------------------------------------
+#This again is gocd_server being defined again
+#   This repetition is to be able to install agent on this separately
+gocd_server_goagent ansible_ssh_host=192.168.56.13 ansible_ssh_user=vagrant ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
+
+#-------------------------------------------------------------
+#Defining this group so as to be able to identify and execute ansible roles
+#   particularly on the database servers
 [db_servers]
-postgresql
-mysql
-citusdata
+postgresql_db
+mysql_db
+citusdata_db
 
+#-------------------------------------------------------------
+#This group is defined to install GoCD agent on the DB servers
+#   Agent on the GoCD server (if "all" option is chosen) will be
+#   installed separately by using the hostname label gocd_server_go_agent
 [VMsToInstallAgents]
-postgresql
-mysql
-citusdata
-gocd_server
+postgresql_goagent goAgentUuid="3c450842-652b-4e50-8064-68add19956bb"
+mysql_goagent goAgentUuid="4c07711c-3440-4e95-b2dd-af182550d961"
+citusdata_goagent goAgentUuid="d8a04b77-1fcf-4c4b-96d8-f19a6025a18e"
+gocd_server_goagent
 
-[servers:vars]
-ansible_ssh_user=vagrant
-ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
-
+#-------------------------------------------------------------
+#Right now I am not sure how to club the variables to 2 different groups
+#   So I have defined the variables for the following groups individually
+#   These variables help the ansible to ssh (connect) to the server
 [db_servers:vars]
 ansible_ssh_user=vagrant
 ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
@@ -32,4 +59,3 @@ ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
 [VMsToInstallAgents:vars]
 ansible_ssh_user=vagrant
 ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
-

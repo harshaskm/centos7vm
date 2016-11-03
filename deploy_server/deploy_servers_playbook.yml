@@ -1,6 +1,6 @@
 ---
 - name: Create a PostgreSQL DB server
-  hosts: postgresql
+  hosts: postgresql_db
   become: yes
   become_user: root
 
@@ -11,8 +11,10 @@
   - installPostgres
   - postgresqlOnCentos7_createdb
 
+
+
 - name: Create a MySql DB server
-  hosts: mysql
+  hosts: mysql_db
   become: yes
   become_method: sudo
   become_user: root
@@ -23,8 +25,10 @@
   roles:
   - mysqlOnCentos7_createdb
 
-- name: Create a PostgreSQL DB server
-  hosts: citusdata
+
+
+- name: Create a PostgreSQL DB server for citusdata
+  hosts: citusdata_db
   become: yes
   become_method: sudo
   become_user: root
@@ -37,7 +41,7 @@
   - citus1OnPgCentos7_prepare
 
 - name: CitusData tutorial
-  hosts: citusdata
+  hosts: citusdata_db
   become: yes
   become_method: sudo
   become_user: citus1
@@ -52,6 +56,7 @@
 
   roles:
   - gocdOnCentos7_install
+
 
 
 - name: Configure GoCD server

@@ -30,7 +30,7 @@
 	fi
 
     if [ "$TEMPSTR1" == "all" ]; then
-            for vmname in $ALL_VMS_EXCEPT_GO
+            for vmname in $ALL_VMS
             do
                 TEMPSTR3=`vagrant status | grep "$vmname" | sed 's/$vmname//g' | xargs`
                 if [ -z "$TEMPSTR3" ]; then
@@ -45,15 +45,5 @@
 		  echo 'No such VM to destroy'
 		else
 		  vagrant destroy $TEMPSTR1 -f
-		fi
-    fi
-
-	if [ "$TEMPSTR2" == "with_gocd" ]; then
-		TEMPSTR3=`vagrant status | grep "gocdOnCentos7" | sed 's/gocdOnCentos7//g' | xargs`
-		if [ -z "$TEMPSTR3" ]; then
-		  echo 'No such VM to destroy'
-		else
-		  echo 'destroying GoCD Server please wait...'
-		  vagrant destroy gocdOnCentos7 -f
 		fi
     fi

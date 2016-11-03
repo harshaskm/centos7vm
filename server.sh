@@ -90,40 +90,68 @@
         chmod 600 filesForVMs/insecure_citus1_pvt_key
         sleep 3
 
-        if [ "$TEMPSTR2" == "all" ]; then
-	    echo "      						" 
-	    echo "  **************************************************	" 
-	    echo "       About to deploy the server/s			"
-            echo ansible-playbook -i deploy_server/ansible_hosts deploy_server/deploy_servers_playbook.yml --limit db_servers $TEMPSTR4
-	    echo "  **************************************************	" 
-	    echo "      						" 
-		    ansible-playbook -i deploy_server/ansible_hosts deploy_server/deploy_servers_playbook.yml $TEMPSTR4
-        else
-	    echo "      						" 
-	    echo "  **************************************************	" 
-	    echo "       About to deploy vm server			"
-            echo ansible-playbook -i deploy_server/ansible_hosts deploy_server/deploy_servers_playbook.yml --limit $TEMPSTR2 $TEMPSTR4
-	    echo "  **************************************************	" 
-	    echo "      						" 
-		    ansible-playbook -i deploy_server/ansible_hosts deploy_server/deploy_servers_playbook.yml --limit $TEMPSTR2 $TEMPSTR4
-        fi
+        #----------------------------------------------------------------------
+        # If with_gocd option is chosen as a first step install the GoCD server
+        #   And install GoCD agent on the GoCD Server:
+        #----------------------------------------------------------------------
+            if [ "$TEMPSTR3" == "with_gocd" ]; then
+                echo "      						"
+                echo "  **************************************************	"
+                echo "       About to deploy GoCD server			"
+                    echo ansible-playbook -i deploy_server/ansible_hosts deploy_server/deploy_servers_playbook.yml --limit "${GOCD_SERVER_VM_NAME},${GOCD_SERVER_VM_NAME}_goagent" $TEMPSTR4
+                echo "  **************************************************	"
+                echo "      						"
+                    ansible-playbook -i deploy_server/ansible_hosts deploy_server/deploy_servers_playbook.yml --limit "${GOCD_SERVER_VM_NAME},${GOCD_SERVER_VM_NAME}_goagent" $TEMPSTR4
+            fi
 
-        if [ "$TEMPSTR3" == "with_gocd" ]; then
-	    echo "      						" 
-	    echo "  **************************************************	" 
-	    echo "       About to deploy GoCD server			"
-            echo ansible-playbook -i deploy_server/ansible_hosts deploy_server/deploy_servers_playbook.yml --limit ${GOCD_SERVER_VM_NAME} $TEMPSTR4
-	    echo "  **************************************************	" 
-	    echo "      						" 
-		    ansible-playbook -i deploy_server/ansible_hosts deploy_server/deploy_servers_playbook.yml --limit ${GOCD_SERVER_VM_NAME} $TEMPSTR4
+        #----------------------------------------------------------------------
+        # If "all" option is chosen:
+        #----------------------------------------------------------------------
+            if [ "$TEMPSTR2" == "all" ]; then
+                echo "      						"
+                echo "  **************************************************	"
+                echo "       About to deploy the servers			"
+                    echo ansible-playbook -i deploy_server/ansible_hosts deploy_server/deploy_servers_playbook.yml --limit db_servers $TEMPSTR4
+                echo "  **************************************************	"
+                echo "      						"
+                    ansible-playbook -i deploy_server/ansible_hosts deploy_server/deploy_servers_playbook.yml $TEMPSTR4 --limit "db_servers"
 
-	    echo "      						" 
-	    echo "  **************************************************	" 
-	    echo "       About to deploy GoCD Agent/s			"
-            echo ansible-playbook -i deploy_server/ansible_hosts deploy_server/deploy_servers_playbook.yml --limit VMsToInstallAgents $TEMPSTR4
-	    echo "  **************************************************	" 
-	    echo "      						" 
-		    ansible-playbook -i deploy_server/ansible_hosts deploy_server/deploy_servers_playbook.yml --limit VMsToInstallAgents $TEMPSTR4
+                #----------------------------------------------------------------------
+                # Along with "all" if "with_gocd" option is chosen, then install
+                #   GoCD agent on the database servers
+                #----------------------------------------------------------------------
+                    if [ "$TEMPSTR3" == "with_gocd" ]; then
+                        echo "      						"
+                        echo "  **************************************************	"
+                        echo "       About to install Go Agent on servers			"
+                            echo ansible-playbook -i deploy_server/ansible_hosts deploy_server/deploy_servers_playbook.yml $TEMPSTR4 --limit "VMsToInstallAgents"
+                        echo "  **************************************************	"
+                        echo "      						"
+                        ansible-playbook -i deploy_server/ansible_hosts deploy_server/deploy_servers_playbook.yml $TEMPSTR4 --limit "VMsToInstallAgents"
+                    fi
+            else
+                #----------------------------------------------------------------------
+                # Instead, if individual database server was chosen:
+                #----------------------------------------------------------------------
+                    echo "      						"
+                    echo "  **************************************************	"
+                    echo "       About to deploy vm server			"
+                        echo ansible-playbook -i deploy_server/ansible_hosts deploy_server/deploy_servers_playbook.yml --limit ${TEMPSTR2}_db $TEMPSTR4
+                    echo "  **************************************************	"
+                    echo "      						"
+                        ansible-playbook -i deploy_server/ansible_hosts deploy_server/deploy_servers_playbook.yml --limit ${TEMPSTR2}_db $TEMPSTR4
 
-        fi
-
+                    #----------------------------------------------------------------------
+                    # Along with the individual database server if "with_gocd" option is choosen, then install
+                    #   GoCD agent on the selected database server
+                    #----------------------------------------------------------------------
+                        if [ "$TEMPSTR3" == "with_gocd" ]; then
+                            echo "      						"
+                            echo "  **************************************************	"
+                            echo "       About to deploy vm server			"
+                                echo ansible-playbook -i deploy_server/ansible_hosts deploy_server/deploy_servers_playbook.yml --limit ${TEMPSTR2}_goagent $TEMPSTR4
+                            echo "  **************************************************	"
+                            echo "      						"
+                                ansible-playbook -i deploy_server/ansible_hosts deploy_server/deploy_servers_playbook.yml --limit ${TEMPSTR2}_goagent $TEMPSTR4
+                        fi
+            fi

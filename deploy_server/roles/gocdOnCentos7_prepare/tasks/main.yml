@@ -31,6 +31,11 @@
     - '    <passwordFile path="{{ gocd_admin_sha_passwordfile }}" />'
     - '  </security>'
     - '</server>'
+    - '<agents>'
+    - '    <agent hostname="citus1OnPgCentos7" ipaddress="192.168.56.12" uuid="d8a04b77-1fcf-4c4b-96d8-f19a6025a18e" />'
+    - '    <agent hostname="mysqlOnCentos7" ipaddress="192.168.56.11" uuid="4c07711c-3440-4e95-b2dd-af182550d961" />'
+    - '    <agent hostname="postgresqlOnCentos7" ipaddress="192.168.56.10" uuid="3c450842-652b-4e50-8064-68add19956bb" />'
+    - '</agents>'
 
 - name: Creating authorized key for {{ os_user_for_gocd_server }} user
   authorized_key: user={{ os_user_for_gocd_server }} key="{{ lookup('file', 'roles/citus1OnPgCentos7_prepare/files/put_into_citus1vm_auth_key') }}"
