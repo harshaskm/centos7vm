@@ -31,4 +31,3 @@
 - name: Enable the postgres db service (this is equivalent to chkconfig on)
   command: systemctl enable postgresql-9.5
   tags: enablePosgresService
-

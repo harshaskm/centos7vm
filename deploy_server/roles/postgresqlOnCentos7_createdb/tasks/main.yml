@@ -7,10 +7,9 @@
 #  debug: msg="{{ p.stdout }}"
 
 - name: This is to initialize the settings that are required for the db to be started and function.
-  command: /usr/pgsql-9.5/bin/postgresql95-setup initdb
+  shell: /usr/pgsql-9.5/bin/postgresql95-setup initdb
   when: p.stdout == "total 0"
   tags: initdb
 
 - name: Start the database service
   command: systemctl start postgresql-9.5.service
-

@@ -3,6 +3,7 @@ Vagrant.configure(2) do |config|
     postgresqlserver1.vm.box = "centos/7"
     postgresqlserver1.ssh.insert_key = false
     postgresqlserver1.vm.network :forwarded_port, host: 27018, guest: 22
+    postgresqlserver1.vm.network :forwarded_port, host: 5999, guest: 5432
     postgresqlserver1.vm.network "private_network", ip: "192.168.56.10", :netmask => "255.255.0.0"
     postgresqlserver1.vm.hostname = "postgresqlOnCentos7"
     postgresqlserver1.vm.provision :shell, inline: "systemctl enable firewalld"
