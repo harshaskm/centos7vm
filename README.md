@@ -11,7 +11,7 @@ This is an effort to have an automated way of downloading, installing and config
     ./server.sh build postgresql
 
 ### Prerequisities
-  You will need Oracle Virtualbox, preferably the latest version installed.
+  You will need Oracle Virtualbox, Ansible, preferably the latest version installed.
   All the development and testing is done on a Macbook, so I assume it will all work on any Linux OS as well.
 
 ## Built With
