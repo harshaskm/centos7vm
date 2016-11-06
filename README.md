@@ -22,7 +22,7 @@ This is an effort to have an automated way of downloading, installing and config
 
 ## Authors
 
-* **Harsha ** - (https://github.com/harshaskm)
+* *Harsha * - (https://github.com/harshaskm)
 
 ## Acknowledgments
 
